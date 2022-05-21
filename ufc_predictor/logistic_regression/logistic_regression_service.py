@@ -12,7 +12,6 @@ stat_indexes = [4, 5, 13, 14, 15, 16, 17, 18, 19, 20]
 
 # temporarily load csv and modify data each request - this a terrible solution and will need to be resolved later on, but we are just testing things.
 
-
 def construct_fight_dataframe(df, fighter_stats, shouldRandomize):
     """ 
     Constructs the fight dataframe from using the fights df and fighter stats dict
@@ -81,11 +80,13 @@ def logistic_regression_predict(date):
     future_df = pd.read_csv(
         'C:\\Users\\nateb\\Documents\\Repos\\python\\ufc-event-predictor\\ufc_predictor\\logistic_regression\\temp_data\\future_fights.csv')
 
-    # only grab fights for May 7th card
+    # grab event name
+    event_name = future_df.loc[future_df["date"] ==
+                               date].reset_index().loc[0, "event_name"]
     future_df = construct_fight_dataframe(
         future_df.loc[future_df["date"] == date], fighter_stats, False)
 
-    fights_df = construct_fight_dataframe(fights_df, fighter_stats, True)
+    fights_df = construct_fight_dataframe(fights_df, fighter_stats, False)
 
     future_X = future_df.loc[:, "rwins":].astype(float).to_numpy()
     future_X = standardize(future_X)
@@ -105,13 +106,15 @@ def logistic_regression_predict(date):
     rows, columns = X_norm.shape
     X_norm = np.concatenate([np.ones((rows, 1)),
                              X_norm], axis=1)
-
     future_X = future_X[:, fit.support_]
     future_X = np.concatenate([np.ones((future_X.shape[0], 1)),
                                future_X], axis=1)
 
     # fit model
     clf.fit(X_norm, y)
-    clf_predictions = clf.predict(future_X)
+    clf_predictions = clf.predict(future_X).tolist()
 
-    return clf_predictions
+    r_fighters = future_df.loc[:, "rf"].values.tolist()
+    b_fighters = future_df.loc[:, "bf"].values.tolist()
+
+    return clf_predictions, r_fighters, b_fighters, event_name

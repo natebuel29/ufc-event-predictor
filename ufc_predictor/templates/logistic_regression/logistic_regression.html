@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Logistic Regression{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <h1>{{event_name}}</h1>
+    <table>
+        {% for results,rf,bf in results_rf_bf%}
+            <tr>
+                <th>{{rf}}</th>
+                <th>{{bf}}</th>
+                {%if results == 1.0 %}
+                    <th>Predicted winner is {{rf}}</th>
+                {% else %}
+                    <th> Predicted winner is {{bf}}</th>
+            <tr>
+                {% endif %}
+        {% endfor %}
+{% endblock %}
