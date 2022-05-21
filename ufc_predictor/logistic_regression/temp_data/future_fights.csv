@@ -1,59 +1,48 @@
-fighter_1,fighter_2,date,bout,location
-Elise Reed,Sam Hughes,"May 21, 2022",Women's Strawweight Bout,"Las Vegas, Nevada, USA"
-Chase Hooper,Felipe Colares,"May 21, 2022",Featherweight Bout,"Las Vegas, Nevada, USA"
-Jonathan Martinez,Vince Morales,"May 21, 2022",Bantamweight Bout,"Las Vegas, Nevada, USA"
-Omar Morales,Uros Medic,"May 21, 2022",Lightweight Bout,"Las Vegas, Nevada, USA"
-Jailton Almeida,Parker Porter,"May 21, 2022",Heavyweight Bout,"Las Vegas, Nevada, USA"
-Joseph Holmes,Alen Amedovski,"May 21, 2022",Middleweight Bout,"Las Vegas, Nevada, USA"
-Chidi Njokuani,Dusko Todorovic,"May 21, 2022",Middleweight Bout,"Las Vegas, Nevada, USA"
-Polyana Viana,Tabatha Ricci,"May 21, 2022",Women's Strawweight Bout,"Las Vegas, Nevada, USA"
-Santiago Ponzinibbio,Michel Pereira,"May 21, 2022",Welterweight Bout,"Las Vegas, Nevada, USA"
-Eryk Anders,Junyong Park,"May 21, 2022",Middleweight Bout,"Las Vegas, Nevada, USA"
-Holly Holm,Ketlen Vieira,"May 21, 2022",Women's Bantamweight Bout,"Las Vegas, Nevada, USA"
-Caio Borralho,Armen Petrosyan,"July 09, 2022",Middleweight Bout,"Las Vegas, Nevada, USA"
-Carlos Ulberg,Tafon Nchukwi,"June 25, 2022",Light Heavyweight Bout,"Las Vegas, Nevada, USA"
-Rafael Dos Anjos,Rafael Fiziev,"July 09, 2022",Lightweight Bout,"Las Vegas, Nevada, USA"
-Alexander Volkov,Jairzinho Rozenstruik,"June 04, 2022",Heavyweight Bout,"Las Vegas, Nevada, USA"
-Ramona Pascual,Joselyne Edwards,"June 11, 2022",Women's Bantamweight Bout,"Kallang, Singapore"
-Andre Fialho,Jake Matthews,"June 11, 2022",Welterweight Bout,"Kallang, Singapore"
-Orion Cosce,Blood Diamond,"June 11, 2022",Welterweight Bout,"Kallang, Singapore"
-Brad Riddell,Jalin Turner,"July 02, 2022",Lightweight Bout,"Las Vegas, Nevada, USA"
-Na Liang,Silvana Gomez Juarez,"June 11, 2022",Women's Strawweight Bout,"Kallang, Singapore"
-Kyung Ho Kang,Batgerel Danaa,"June 11, 2022",Bantamweight Bout,"Kallang, Singapore"
-Jessica-Rose Clark,Julija Stoliarenko,"July 02, 2022",Women's Bantamweight Bout,"Las Vegas, Nevada, USA"
-Brad Tavares,Dricus Du Plessis,"July 02, 2022",Middleweight Bout,"Las Vegas, Nevada, USA"
-Robbie Lawler,Bryan Barberena,"July 02, 2022",Welterweight Bout,"Las Vegas, Nevada, USA"
-Jessica Eye,Maycee Barber,"July 02, 2022",Women's Flyweight Bout,"Las Vegas, Nevada, USA"
-Uriah Hall,Andre Muniz,"July 02, 2022",Middleweight Bout,"Las Vegas, Nevada, USA"
-Lauren Murphy,Miesha Tate,"July 02, 2022",Women's Flyweight Bout,"Las Vegas, Nevada, USA"
-Brendan Allen,Jacob Malkoun,"June 11, 2022",Middleweight Bout,"Kallang, Singapore"
-Pedro Munhoz,Sean O'Malley,"July 02, 2022",Bantamweight Bout,"Las Vegas, Nevada, USA"
-Sean Strickland,Alex Pereira,"July 02, 2022",Middleweight Bout,"Las Vegas, Nevada, USA"
-Alexander Volkanovski,Max Holloway,"July 02, 2022",UFC Featherweight Title Bout,"Las Vegas, Nevada, USA"
-Maheshate,Steve Garcia,"June 11, 2022",Featherweight Bout,"Kallang, Singapore"
-Israel Adesanya,Jared Cannonier,"July 02, 2022",UFC Middleweight Title Bout,"Las Vegas, Nevada, USA"
-SeungWoo Choi,Josh Culibao,"June 11, 2022",Featherweight Bout,"Kallang, Singapore"
-Jack Della Maddalena,Ramazan Emeev,"June 11, 2022",Welterweight Bout,"Kallang, Singapore"
-Zhang Weili,Joanna Jedrzejczyk,"June 11, 2022",Women's Strawweight Bout,"Kallang, Singapore"
-Rogerio Bontorin,Manel Kape,"June 11, 2022",Flyweight Bout,"Kallang, Singapore"
-Mandy Bohm,Victoria Leonardo,"July 23, 2022",Women's Flyweight Bout,"London, England, United Kingdom"
-Valentina Shevchenko,Taila Santos,"June 11, 2022",UFC Women's Flyweight Title Bout,"Kallang, Singapore"
-Paul Craig,Volkan Oezdemir,"July 23, 2022",Light Heavyweight Bout,"London, England, United Kingdom"
-Glover Teixeira,Jiri Prochazka,"June 11, 2022",UFC Light Heavyweight Title Bout,"Kallang, Singapore"
-Muhammad Mokaev,Charles Johnson,"July 23, 2022",Flyweight Bout,"London, England, United Kingdom"
-Nikita Krylov,Alexander Gustafsson,"July 23, 2022",Light Heavyweight Bout,"London, England, United Kingdom"
-Molly McCann,Hannah Goldy,"July 23, 2022",Women's Flyweight Bout,"London, England, United Kingdom"
-Jack Hermansson,Darren Till,"July 23, 2022",Middleweight Bout,"London, England, United Kingdom"
-Eddie Wineland,Cody Stamann,"June 18, 2022",Bantamweight Bout,"Austin, Texas, USA"
-Jasmine Jasudavicius,Natalia Silva,"June 18, 2022",Women's Flyweight Bout,"Austin, Texas, USA"
-Court McGee,Jeremiah Wells,"June 18, 2022",Welterweight Bout,"Austin, Texas, USA"
-Curtis Blaydes,Tom Aspinall,"July 23, 2022",Heavyweight Bout,"London, England, United Kingdom"
-Maria Oliveira,Gloria de Paula,"June 18, 2022",Women's Strawweight Bout,"Austin, Texas, USA"
-Roman Dolidze,Kyle Daukaus,"June 18, 2022",Middleweight Bout,"Austin, Texas, USA"
-Damir Ismagulov,Guram Kutateladze,"June 18, 2022",Lightweight Bout,"Austin, Texas, USA"
-Phil Hawes,Deron Winn,"June 18, 2022",Middleweight Bout,"Austin, Texas, USA"
-Joaquin Buckley,Albert Duraev,"June 18, 2022",Middleweight Bout,"Austin, Texas, USA"
-Julian Marquez,Gregory Rodrigues,"June 18, 2022",Middleweight Bout,"Austin, Texas, USA"
-Calvin Kattar,Josh Emmett,"June 18, 2022",Featherweight Bout,"Austin, Texas, USA"
-Donald Cerrone,Joe Lauzon,"June 18, 2022",Lightweight Bout,"Austin, Texas, USA"
-Tim Means,Kevin Holland,"June 18, 2022",Welterweight Bout,"Austin, Texas, USA"
+fighter_1,fighter_2,date,bout,location,event_name
+Maria Oliveira,Gloria de Paula,"June 18, 2022",Women's Strawweight Bout,"Austin, Texas, USA",UFC Fight Night: Kattar vs. Emmett
+Jasmine Jasudavicius,Natalia Silva,"June 18, 2022",Women's Flyweight Bout,"Austin, Texas, USA",UFC Fight Night: Kattar vs. Emmett
+Phil Hawes,Deron Winn,"June 18, 2022",Middleweight Bout,"Austin, Texas, USA",UFC Fight Night: Kattar vs. Emmett
+Roman Dolidze,Kyle Daukaus,"June 18, 2022",Middleweight Bout,"Austin, Texas, USA",UFC Fight Night: Kattar vs. Emmett
+Damir Ismagulov,Guram Kutateladze,"June 18, 2022",Lightweight Bout,"Austin, Texas, USA",UFC Fight Night: Kattar vs. Emmett
+Court McGee,Jeremiah Wells,"June 18, 2022",Welterweight Bout,"Austin, Texas, USA",UFC Fight Night: Kattar vs. Emmett
+Julian Marquez,Gregory Rodrigues,"June 18, 2022",Middleweight Bout,"Austin, Texas, USA",UFC Fight Night: Kattar vs. Emmett
+Joaquin Buckley,Albert Duraev,"June 18, 2022",Middleweight Bout,"Austin, Texas, USA",UFC Fight Night: Kattar vs. Emmett
+Tim Means,Kevin Holland,"June 18, 2022",Welterweight Bout,"Austin, Texas, USA",UFC Fight Night: Kattar vs. Emmett
+Calvin Kattar,Josh Emmett,"June 18, 2022",Featherweight Bout,"Austin, Texas, USA",UFC Fight Night: Kattar vs. Emmett
+Alexander Volkov,Jairzinho Rozenstruik,"June 04, 2022",Heavyweight Bout,"Las Vegas, Nevada, USA",UFC Fight Night: Volkov vs. Rozenstruik
+Donald Cerrone,Joe Lauzon,"June 18, 2022",Lightweight Bout,"Austin, Texas, USA",UFC Fight Night: Kattar vs. Emmett
+Eddie Wineland,Cody Stamann,"June 18, 2022",Bantamweight Bout,"Austin, Texas, USA",UFC Fight Night: Kattar vs. Emmett
+Paul Craig,Volkan Oezdemir,"July 23, 2022",Light Heavyweight Bout,"London, England, United Kingdom",UFC Fight Night: Blaydes vs. Aspinall
+Mandy Bohm,Victoria Leonardo,"July 23, 2022",Women's Flyweight Bout,"London, England, United Kingdom",UFC Fight Night: Blaydes vs. Aspinall
+Rafael Dos Anjos,Rafael Fiziev,"July 09, 2022",Lightweight Bout,"Las Vegas, Nevada, USA",UFC Fight Night: Dos Anjos vs. Fiziev
+Caio Borralho,Armen Petrosyan,"July 09, 2022",Middleweight Bout,"Las Vegas, Nevada, USA",UFC Fight Night: Dos Anjos vs. Fiziev
+Nikita Krylov,Alexander Gustafsson,"July 23, 2022",Light Heavyweight Bout,"London, England, United Kingdom",UFC Fight Night: Blaydes vs. Aspinall
+Curtis Blaydes,Tom Aspinall,"July 23, 2022",Heavyweight Bout,"London, England, United Kingdom",UFC Fight Night: Blaydes vs. Aspinall
+Muhammad Mokaev,Charles Johnson,"July 23, 2022",Flyweight Bout,"London, England, United Kingdom",UFC Fight Night: Blaydes vs. Aspinall
+Molly McCann,Hannah Goldy,"July 23, 2022",Women's Flyweight Bout,"London, England, United Kingdom",UFC Fight Night: Blaydes vs. Aspinall
+Jack Hermansson,Darren Till,"July 23, 2022",Middleweight Bout,"London, England, United Kingdom",UFC Fight Night: Blaydes vs. Aspinall
+Ramona Pascual,Joselyne Edwards,"June 11, 2022",Women's Bantamweight Bout,"Kallang, Singapore",UFC 275: Teixeira vs. Prochazka
+Brad Riddell,Jalin Turner,"July 02, 2022",Lightweight Bout,"Las Vegas, Nevada, USA",UFC 276: Adesanya vs. Cannonier
+Robbie Lawler,Bryan Barberena,"July 02, 2022",Welterweight Bout,"Las Vegas, Nevada, USA",UFC 276: Adesanya vs. Cannonier
+Brad Tavares,Dricus Du Plessis,"July 02, 2022",Middleweight Bout,"Las Vegas, Nevada, USA",UFC 276: Adesanya vs. Cannonier
+Jessica Eye,Maycee Barber,"July 02, 2022",Women's Flyweight Bout,"Las Vegas, Nevada, USA",UFC 276: Adesanya vs. Cannonier
+Na Liang,Silvana Gomez Juarez,"June 11, 2022",Women's Strawweight Bout,"Kallang, Singapore",UFC 275: Teixeira vs. Prochazka
+Carlos Ulberg,Tafon Nchukwi,"June 25, 2022",Light Heavyweight Bout,"Las Vegas, Nevada, USA",UFC Fight Night
+Orion Cosce,Blood Diamond,"June 11, 2022",Welterweight Bout,"Kallang, Singapore",UFC 275: Teixeira vs. Prochazka
+Jessica-Rose Clark,Julija Stoliarenko,"July 02, 2022",Women's Bantamweight Bout,"Las Vegas, Nevada, USA",UFC 276: Adesanya vs. Cannonier
+Andre Fialho,Jake Matthews,"June 11, 2022",Welterweight Bout,"Kallang, Singapore",UFC 275: Teixeira vs. Prochazka
+Uriah Hall,Andre Muniz,"July 02, 2022",Middleweight Bout,"Las Vegas, Nevada, USA",UFC 276: Adesanya vs. Cannonier
+Kyung Ho Kang,Batgerel Danaa,"June 11, 2022",Bantamweight Bout,"Kallang, Singapore",UFC 275: Teixeira vs. Prochazka
+Alexander Volkanovski,Max Holloway,"July 02, 2022",UFC Featherweight Title Bout,"Las Vegas, Nevada, USA",UFC 276: Adesanya vs. Cannonier
+Pedro Munhoz,Sean O'Malley,"July 02, 2022",Bantamweight Bout,"Las Vegas, Nevada, USA",UFC 276: Adesanya vs. Cannonier
+Israel Adesanya,Jared Cannonier,"July 02, 2022",UFC Middleweight Title Bout,"Las Vegas, Nevada, USA",UFC 276: Adesanya vs. Cannonier
+Lauren Murphy,Miesha Tate,"July 02, 2022",Women's Flyweight Bout,"Las Vegas, Nevada, USA",UFC 276: Adesanya vs. Cannonier
+Sean Strickland,Alex Pereira,"July 02, 2022",Middleweight Bout,"Las Vegas, Nevada, USA",UFC 276: Adesanya vs. Cannonier
+SeungWoo Choi,Josh Culibao,"June 11, 2022",Featherweight Bout,"Kallang, Singapore",UFC 275: Teixeira vs. Prochazka
+Maheshate,Steve Garcia,"June 11, 2022",Featherweight Bout,"Kallang, Singapore",UFC 275: Teixeira vs. Prochazka
+Jack Della Maddalena,Ramazan Emeev,"June 11, 2022",Welterweight Bout,"Kallang, Singapore",UFC 275: Teixeira vs. Prochazka
+Rogerio Bontorin,Manel Kape,"June 11, 2022",Flyweight Bout,"Kallang, Singapore",UFC 275: Teixeira vs. Prochazka
+Brendan Allen,Jacob Malkoun,"June 11, 2022",Middleweight Bout,"Kallang, Singapore",UFC 275: Teixeira vs. Prochazka
+Glover Teixeira,Jiri Prochazka,"June 11, 2022",UFC Light Heavyweight Title Bout,"Kallang, Singapore",UFC 275: Teixeira vs. Prochazka
+Zhang Weili,Joanna Jedrzejczyk,"June 11, 2022",Women's Strawweight Bout,"Kallang, Singapore",UFC 275: Teixeira vs. Prochazka
+Valentina Shevchenko,Taila Santos,"June 11, 2022",UFC Women's Flyweight Title Bout,"Kallang, Singapore",UFC 275: Teixeira vs. Prochazka

@@ -111,6 +111,8 @@ def logistic_regression_predict(date):
 
     # fit model
     clf.fit(X_norm, y)
-    clf_predictions = clf.predict(future_X)
+    clf_predictions = clf.predict(future_X).tolist()
 
-    return clf_predictions
+    r_fighters = future_df.loc[:, "rf"].values.tolist()
+    b_fighters = future_df.loc[:, "bf"].values.tolist()
+    return clf_predictions, r_fighters, b_fighters
