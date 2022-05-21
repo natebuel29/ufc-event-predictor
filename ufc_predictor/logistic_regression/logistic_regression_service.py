@@ -12,7 +12,6 @@ stat_indexes = [4, 5, 13, 14, 15, 16, 17, 18, 19, 20]
 
 # temporarily load csv and modify data each request - this a terrible solution and will need to be resolved later on, but we are just testing things.
 
-
 def construct_fight_dataframe(df, fighter_stats, shouldRandomize):
     """ 
     Constructs the fight dataframe from using the fights df and fighter stats dict
