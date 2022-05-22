@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Logistic Regression{% endblock %}</h1>
+  <h2>{% block title %}Logistic Regression{% endblock %}</h2>
 {% endblock %}
 
 {% block content %}
@@ -9,13 +9,18 @@
     <table>
         {% for results,rf,bf in results_rf_bf%}
             <tr>
+                {%if results == 1.0 %}
+                    <th class="win">W</th>
+                {% else %}
+                    <th class="lose">L</th>
+                {% endif %}
                 <th>{{rf}}</th>
                 <th>{{bf}}</th>
                 {%if results == 1.0 %}
-                    <th>Predicted winner is {{rf}}</th>
+                    <th class="lose">L</th>
                 {% else %}
-                    <th> Predicted winner is {{bf}}</th>
-            <tr>
+                    <th class="win">W</th>
                 {% endif %}
+            </tr>
         {% endfor %}
 {% endblock %}
