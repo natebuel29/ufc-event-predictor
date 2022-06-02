@@ -85,7 +85,7 @@ def logistic_regression_predict(date):
                                date].reset_index().loc[0, "event_name"]
     future_df = construct_fight_dataframe(
         future_df.loc[future_df["date"] == date], fighter_stats, False)
-
+    print(future_df)
     fights_df = construct_fight_dataframe(fights_df, fighter_stats, True)
 
     future_X = future_df.loc[:, "rwins":].astype(float).to_numpy()
