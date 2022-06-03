@@ -4,7 +4,7 @@ import numpy as np
 
 fdf_labels = ['rf', 'bf', 'winner', 'rwins', 'bwins', 'rloses', 'bloses', 'rslpm', 'bslpm', 'rstrac', 'bstrac', 'rsapm', 'bsapm', 'rstrd', 'bstrd', 'rtdav',
               'btdav', 'rtdac', 'btdac', 'rtdd', 'btdd', 'rsubav', 'bsubav']
-stat_indexes = [4, 5, 13, 14, 15, 16, 17, 18, 19, 20]
+stat_indexes = [3, 4, 12, 13, 14, 15, 16, 17, 18, 19]
 
 
 def construct_fight_dataframe(df, fighter_stats, shouldRandomize):
@@ -41,7 +41,7 @@ def construct_fight_dataframe(df, fighter_stats, shouldRandomize):
 
             rf_stats = fighter_stats[rf]
             bf_stats = fighter_stats[bf]
-
+            print(rf_stats)
             for index in stat_indexes:
                 rstat = rf_stats[index]
                 bstat = bf_stats[index]

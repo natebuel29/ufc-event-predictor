@@ -9,6 +9,9 @@ pandas = "*"
 flask = "*"
 sklearn = "*"
 mysql-connector = "*"
+flask-mysql = "*"
+pymysql = "*"
+mysqlclient = "*"
 
 [dev-packages]
 autopep8 = "*"
