@@ -41,7 +41,6 @@ def construct_fight_dataframe(df, fighter_stats, shouldRandomize):
 
             rf_stats = fighter_stats[rf]
             bf_stats = fighter_stats[bf]
-            print(rf_stats)
             for index in stat_indexes:
                 rstat = rf_stats[index]
                 bstat = bf_stats[index]

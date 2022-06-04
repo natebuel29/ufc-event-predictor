@@ -37,6 +37,7 @@ def create_past_matchups_table(conn):
             rstrac FLOAT,
             bstrac FLOAT,
             rsapm FLOAT,
+            bsapm FLOAT,
             rstrd FLOAT,
             bstrd FLOAT,
             rtdav FLOAT,
@@ -56,12 +57,43 @@ def create_past_matchups_table(conn):
     if cursor.fetchone()[0] == 0:
         cursor.execute("SELECT * FROM fights")
         fight_df = pd.DataFrame(cursor.fetchall()).loc[:, 1:]
-        print(cursor.fetchall())
-        print(fight_df)
         cursor.execute("SELECT * FROM fighters")
         fighter_stats = pd.DataFrame(
             cursor.fetchall()).loc[:, 1:].set_index(1).T.to_dict('list')
-        print(construct_fight_dataframe(fight_df, fighter_stats, True))
+        past_matchup_df = construct_fight_dataframe(
+            fight_df, fighter_stats, True)
+        for index, row in past_matchup_df.iterrows():
+            sql = """
+            INSERT INTO past_matchups (rf,bf,winner,rwins,bwins,rloses,bloses,rslpm,bslpm,rstrac,bstrac,rsapm,bsapm,rstrd,bstrd,rtdav,btdav,rtdac,btdac,rtdd,btdd,rsubav,bsubav)
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+            """
+            val = (
+                row['rf'],
+                row['bf'],
+                row['winner'],
+                row['rwins'],
+                row['bwins'],
+                row['rloses'],
+                row['bloses'],
+                row['rslpm'],
+                row['bslpm'],
+                row['rstrac'],
+                row['bstrac'],
+                row['rsapm'],
+                row['bsapm'],
+                row['rstrd'],
+                row['bstrd'],
+                row['rtdav'],
+                row['btdav'],
+                row['rtdac'],
+                row['btdac'],
+                row['rtdd'],
+                row['btdd'],
+                row['rsubav'],
+                row['bsubav']
+            )
+            cursor.execute(sql, val)
+    conn.commit()
     cursor.close()
 
 
