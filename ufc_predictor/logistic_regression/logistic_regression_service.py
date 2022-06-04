@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import csv
 from sklearn.feature_selection import RFE
+from ufc_predictor.extensions import mysql
 
 fdf_labels = ['rf', 'bf', 'winner', 'rwins', 'bwins', 'rloses', 'bloses', 'rslpm', 'bslpm', 'rstrac', 'bstrac', 'rsapm', 'bsapm', 'rstrd', 'bstrd', 'rtdav',
               'btdav', 'rtdac', 'btdac', 'rtdd', 'btdd', 'rsubav', 'bsubav']
@@ -68,33 +69,26 @@ def standardize(X):
 
 
 def logistic_regression_predict(date):
-    fighter_stats = {}
+    # current_app.
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    cursor.execute(f"SELECT * FROM future_matchups WHERE date_='{date}'")
 
-    with open('C:\\Users\\nateb\\Documents\\Repos\\python\\ufc-event-predictor\\ufc_predictor\\logistic_regression\\temp_data\\fighters.csv', mode='r') as inp:
-        reader = csv.reader(inp)
-        fighter_stats = {rows[0]: rows[0:] for rows in reader}
+    future_df = pd.DataFrame(cursor.fetchall()).loc[:, 2:]
 
-    fights_df = pd.read_csv(
-        'C:\\Users\\nateb\\Documents\\Repos\\python\\ufc-event-predictor\\ufc_predictor\\logistic_regression\\temp_data\\fights.csv')
-
-    future_df = pd.read_csv(
-        'C:\\Users\\nateb\\Documents\\Repos\\python\\ufc-event-predictor\\ufc_predictor\\logistic_regression\\temp_data\\future_fights.csv')
-
-    # grab event name
-    event_name = future_df.loc[future_df["date"] ==
-                               date].reset_index().loc[0, "event_name"]
-    future_df = construct_fight_dataframe(
-        future_df.loc[future_df["date"] == date], fighter_stats, False)
+    cursor.execute(f"SELECT * FROM past_matchups")
+    fights_df = pd.DataFrame(cursor.fetchall()).loc[:, 1:]
+    print(fights_df)
     print(future_df)
-    fights_df = construct_fight_dataframe(fights_df, fighter_stats, True)
+    # grab event name
+    event_name = ""
 
-    future_X = future_df.loc[:, "rwins":].astype(float).to_numpy()
+    future_X = future_df.loc[:, 4:].astype(float).to_numpy()
     future_X = standardize(future_X)
-
     # Get data for model
-    X = fights_df.loc[:, "rwins":].astype(float).to_numpy()
+    X = fights_df.loc[:, 4:].astype(float).to_numpy()
     X_norm = standardize(X)
-    y = fights_df.loc[:, "winner"].astype(float).to_numpy()
+    y = fights_df.loc[:, 3].astype(float).to_numpy()
 
     clf = LogisticRegression(random_state=2)
 
@@ -114,7 +108,7 @@ def logistic_regression_predict(date):
     clf.fit(X_norm, y)
     clf_predictions = clf.predict(future_X).tolist()
 
-    r_fighters = future_df.loc[:, "rf"].values.tolist()
-    b_fighters = future_df.loc[:, "bf"].values.tolist()
+    r_fighters = future_df.loc[:, 2].values.tolist()
+    b_fighters = future_df.loc[:, 3].values.tolist()
 
     return clf_predictions, r_fighters, b_fighters, event_name

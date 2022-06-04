@@ -1,16 +1,15 @@
 from flask import Flask
-from flaskext.mysql import MySQL
-from ufc_predictor.util import construct_fight_dataframe
+from ufc_predictor.extensions import mysql
+from ufc_predictor.util import construct_fight_dataframe, construct_future_fight_dataframe
 import pandas as pd
 
 
 def create_app(config_object):
     app = Flask(__name__)
     app.config.from_object(config_object)
-
-    mysql = MySQL()
     mysql.init_app(app)
     create_past_matchups_table(mysql.connect())
+    create_future_matchups_table(mysql.connect())
 
     from .logistic_regression import views
     app.register_blueprint(views.logistic_regresion_views)
@@ -98,9 +97,10 @@ def create_past_matchups_table(conn):
 
 
 def create_future_matchups_table(conn):
-    cursor = cursor()
+    cursor = conn.cursor()
     cursor.execute(
         """CREATE TABLE if not exists future_matchups(id INT AUTO_INCREMENT PRIMARY KEY,
+            date_ TEXT,
             rf TEXT,
             bf TEXT,
             rwins INT,
@@ -112,6 +112,7 @@ def create_future_matchups_table(conn):
             rstrac FLOAT,
             bstrac FLOAT,
             rsapm FLOAT,
+            bsapm FLOAT,
             rstrd FLOAT,
             bstrd FLOAT,
             rtdav FLOAT,
@@ -123,3 +124,50 @@ def create_future_matchups_table(conn):
             rsubav FLOAT,
             bsubav FLOAT)"""
     )
+
+    sql = "SELECT COUNT(*) as row_count FROM future_matchups"
+
+    cursor.execute(sql)
+
+    if cursor.fetchone()[0] == 0:
+        cursor.execute("SELECT * FROM future_fights")
+        future_fight_df = pd.DataFrame(cursor.fetchall()).loc[:, 1:]
+        cursor.execute("SELECT * FROM fighters")
+        fighter_stats = pd.DataFrame(
+            cursor.fetchall()).loc[:, 1:].set_index(1).T.to_dict('list')
+        future_matchup_df = construct_future_fight_dataframe(
+            future_fight_df, fighter_stats)
+        print(future_matchup_df)
+        for index, row in future_matchup_df.iterrows():
+            sql = """
+            INSERT INTO future_matchups (date_,rf,bf,rwins,bwins,rloses,bloses,rslpm,bslpm,rstrac,bstrac,rsapm,bsapm,rstrd,bstrd,rtdav,btdav,rtdac,btdac,rtdd,btdd,rsubav,bsubav)
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+            """
+            val = (
+                row['date'],
+                row['rf'],
+                row['bf'],
+                row['rwins'],
+                row['bwins'],
+                row['rloses'],
+                row['bloses'],
+                row['rslpm'],
+                row['bslpm'],
+                row['rstrac'],
+                row['bstrac'],
+                row['rsapm'],
+                row['bsapm'],
+                row['rstrd'],
+                row['bstrd'],
+                row['rtdav'],
+                row['btdav'],
+                row['rtdac'],
+                row['btdac'],
+                row['rtdd'],
+                row['btdd'],
+                row['rsubav'],
+                row['bsubav']
+            )
+            cursor.execute(sql, val)
+    conn.commit()
+    cursor.close()
