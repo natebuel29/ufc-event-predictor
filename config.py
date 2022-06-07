@@ -9,9 +9,9 @@ class BaseConfig(object):
 class DevConfig(BaseConfig):
     DEBUG = True
     MYSQL_DATABASE_USER = 'mysqlAdmin'
-    MYSQL_DATABASE_PASSWORD = '5bc,cx^h=H8KbdN3x.mSd95jMmZmwK'
+    MYSQL_DATABASE_PASSWORD = ''
     MYSQL_DATABASE_DB = 'thisisatest'
-    MYSQL_DATABASE_HOST = 'uu1744jdr5e80dc.cdxfj1ghajls.us-east-1.rds.amazonaws.com'
+    MYSQL_DATABASE_HOST = ''
 
 
 class ProductionConfig(BaseConfig):
