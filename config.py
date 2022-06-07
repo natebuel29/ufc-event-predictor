@@ -8,6 +8,10 @@ class BaseConfig(object):
 
 class DevConfig(BaseConfig):
     DEBUG = True
+    MYSQL_DATABASE_USER = 'mysqlAdmin'
+    MYSQL_DATABASE_PASSWORD = ''
+    MYSQL_DATABASE_DB = 'thisisatest'
+    MYSQL_DATABASE_HOST = ''
 
 
 class ProductionConfig(BaseConfig):

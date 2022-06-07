@@ -8,6 +8,8 @@ numpy = "*"
 pandas = "*"
 flask = "*"
 sklearn = "*"
+flask-mysql = "*"
+pymysql = "*"
 
 [dev-packages]
 autopep8 = "*"
