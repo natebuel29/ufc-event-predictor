@@ -21,6 +21,7 @@ def create_app(config_object):
 
 
 def create_past_matchups_table(conn):
+    # THIS IS A TEMP SOLUTION - NEED TO CONVERT THIS STEP TO A LAMBDA MAYBE??
     cursor = conn.cursor()
     cursor.execute(
         """CREATE TABLE if not exists past_matchups(id INT AUTO_INCREMENT PRIMARY KEY,
@@ -53,6 +54,7 @@ def create_past_matchups_table(conn):
 
     cursor.execute(sql)
 
+    # if the DB is empty, then populate it
     if cursor.fetchone()[0] == 0:
         cursor.execute("SELECT * FROM fights")
         fight_df = pd.DataFrame(cursor.fetchall()).loc[:, 1:]
@@ -61,42 +63,19 @@ def create_past_matchups_table(conn):
             cursor.fetchall()).loc[:, 1:].set_index(1).T.to_dict('list')
         past_matchup_df = construct_fight_dataframe(
             fight_df, fighter_stats, True)
-        for index, row in past_matchup_df.iterrows():
-            sql = """
+        past_matchup_tuples = list(
+            past_matchup_df.itertuples(index=False, name=None))
+        sql = """
             INSERT INTO past_matchups (rf,bf,winner,rwins,bwins,rloses,bloses,rslpm,bslpm,rstrac,bstrac,rsapm,bsapm,rstrd,bstrd,rtdav,btdav,rtdac,btdac,rtdd,btdd,rsubav,bsubav)
             VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
             """
-            val = (
-                row['rf'],
-                row['bf'],
-                row['winner'],
-                row['rwins'],
-                row['bwins'],
-                row['rloses'],
-                row['bloses'],
-                row['rslpm'],
-                row['bslpm'],
-                row['rstrac'],
-                row['bstrac'],
-                row['rsapm'],
-                row['bsapm'],
-                row['rstrd'],
-                row['bstrd'],
-                row['rtdav'],
-                row['btdav'],
-                row['rtdac'],
-                row['btdac'],
-                row['rtdd'],
-                row['btdd'],
-                row['rsubav'],
-                row['bsubav']
-            )
-            cursor.execute(sql, val)
-    conn.commit()
+        cursor.executemany(sql, past_matchup_tuples)
+        conn.commit()
     cursor.close()
 
 
 def create_future_matchups_table(conn):
+    # THIS IS A TEMP SOLUTION - NEED TO CONVERT THIS STEP TO A LAMBDA MAYBE??
     cursor = conn.cursor()
     cursor.execute(
         """CREATE TABLE if not exists future_matchups(id INT AUTO_INCREMENT PRIMARY KEY,
@@ -129,6 +108,7 @@ def create_future_matchups_table(conn):
 
     cursor.execute(sql)
 
+    # if the DB is empty, then populate it
     if cursor.fetchone()[0] == 0:
         cursor.execute("SELECT * FROM future_fights")
         future_fight_df = pd.DataFrame(cursor.fetchall()).loc[:, 1:]
@@ -137,37 +117,13 @@ def create_future_matchups_table(conn):
             cursor.fetchall()).loc[:, 1:].set_index(1).T.to_dict('list')
         future_matchup_df = construct_future_fight_dataframe(
             future_fight_df, fighter_stats)
-        print(future_matchup_df)
-        for index, row in future_matchup_df.iterrows():
-            sql = """
+        future_matchup_list = list(
+            future_matchup_df.itertuples(index=False, name=None))
+        sql = """
             INSERT INTO future_matchups (date_,rf,bf,rwins,bwins,rloses,bloses,rslpm,bslpm,rstrac,bstrac,rsapm,bsapm,rstrd,bstrd,rtdav,btdav,rtdac,btdac,rtdd,btdd,rsubav,bsubav)
             VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
             """
-            val = (
-                row['date'],
-                row['rf'],
-                row['bf'],
-                row['rwins'],
-                row['bwins'],
-                row['rloses'],
-                row['bloses'],
-                row['rslpm'],
-                row['bslpm'],
-                row['rstrac'],
-                row['bstrac'],
-                row['rsapm'],
-                row['bsapm'],
-                row['rstrd'],
-                row['bstrd'],
-                row['rtdav'],
-                row['btdav'],
-                row['rtdac'],
-                row['btdac'],
-                row['rtdd'],
-                row['btdd'],
-                row['rsubav'],
-                row['bsubav']
-            )
-            cursor.execute(sql, val)
-    conn.commit()
+        cursor.executemany(sql, future_matchup_list)
+        conn.commit()
+
     cursor.close()

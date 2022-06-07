@@ -59,7 +59,6 @@ def construct_future_fight_dataframe(df, fighter_stats):
     for row in df.itertuples():
         temp_ar = []
         date = row[3]
-        print(date)
         rf = row[1]
         bf = row[2]
         temp_ar.append(date)

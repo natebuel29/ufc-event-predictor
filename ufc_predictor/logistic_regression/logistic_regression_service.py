@@ -1,75 +1,11 @@
 from sklearn.linear_model import LogisticRegression
-import random
 import pandas as pd
 import numpy as np
-import csv
 from sklearn.feature_selection import RFE
 from ufc_predictor.extensions import mysql
 
-fdf_labels = ['rf', 'bf', 'winner', 'rwins', 'bwins', 'rloses', 'bloses', 'rslpm', 'bslpm', 'rstrac', 'bstrac', 'rsapm', 'bsapm', 'rstrd', 'bstrd', 'rtdav',
-              'btdav', 'rtdac', 'btdac', 'rtdd', 'btdd', 'rsubav', 'bsubav']
-stat_indexes = [4, 5, 13, 14, 15, 16, 17, 18, 19, 20]
-
-
-# temporarily load csv and modify data each request - this a terrible solution and will need to be resolved later on, but we are just testing things.
-
-def construct_fight_dataframe(df, fighter_stats, shouldRandomize):
-    """ 
-    Constructs the fight dataframe from using the fights df and fighter stats dict
-    Arguments:
-        df: the fighter df that is read from fighters.csv
-        shouldRandomize: boolean flag to randomize the red/blue corner to balance the classes
-    Returns:
-        The fight dataframe which includes the fighters,their stats, and the winner
-    """
-    X = pd.DataFrame(columns=fdf_labels)
-    for row in df.itertuples():
-        temp_ar = []
-        rwin = row[3]
-        chance = random.uniform(0, 1)
-        if chance > 0.65 and shouldRandomize:
-            rf = row[2]
-            bf = row[1]
-            rwin = row[4]
-            bwin = row[3]
-        else:
-            rf = row[1]
-            bf = row[2]
-            rwin = row[3]
-            bwin = row[4]
-
-        if rwin != bwin:
-            temp_ar.append(rf)
-            temp_ar.append(bf)
-
-            winner = 1 if rwin == 1 else 0
-            temp_ar.append(winner)
-
-            rf_stats = fighter_stats[rf]
-            bf_stats = fighter_stats[bf]
-
-            for index in stat_indexes:
-                rstat = rf_stats[index]
-                bstat = bf_stats[index]
-                temp_ar.append(rstat)
-                temp_ar.append(bstat)
-
-            X = pd.concat(
-                [pd.DataFrame([temp_ar], columns=fdf_labels), X], ignore_index=True)
-
-    return X
-
-
-def standardize(X):
-    X_norm = X.copy()
-    mu = np.mean(X_norm, axis=0)
-    sigma = np.std(X_norm, axis=0)
-    X_norm = (X_norm - mu)/sigma
-    return X_norm
-
 
 def logistic_regression_predict(date):
-    # current_app.
     conn = mysql.connect()
     cursor = conn.cursor()
     cursor.execute(f"SELECT * FROM future_matchups WHERE date_='{date}'")
@@ -78,8 +14,7 @@ def logistic_regression_predict(date):
 
     cursor.execute(f"SELECT * FROM past_matchups")
     fights_df = pd.DataFrame(cursor.fetchall()).loc[:, 1:]
-    print(fights_df)
-    print(future_df)
+
     # grab event name
     event_name = ""
 
@@ -95,6 +30,7 @@ def logistic_regression_predict(date):
     # Use Recursive Feature Elimation for feature selection
     rfe = RFE(clf)
     fit = rfe.fit(X_norm, y)
+
     # filter to only the best variables
     X_norm = X_norm[:, fit.support_]
     rows, columns = X_norm.shape
@@ -112,3 +48,11 @@ def logistic_regression_predict(date):
     b_fighters = future_df.loc[:, 3].values.tolist()
 
     return clf_predictions, r_fighters, b_fighters, event_name
+
+
+def standardize(X):
+    X_norm = X.copy()
+    mu = np.mean(X_norm, axis=0)
+    sigma = np.std(X_norm, axis=0)
+    X_norm = (X_norm - mu)/sigma
+    return X_norm
