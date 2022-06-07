@@ -16,9 +16,10 @@ def logistic_regression_predict(date):
     fights_df = pd.DataFrame(cursor.fetchall()).loc[:, 1:]
 
     # grab event name
-    event_name = ""
+    print(future_df)
+    event_name = future_df.loc[1, 2]
 
-    future_X = future_df.loc[:, 4:].astype(float).to_numpy()
+    future_X = future_df.loc[:, 5:].astype(float).to_numpy()
     future_X = standardize(future_X)
     # Get data for model
     X = fights_df.loc[:, 4:].astype(float).to_numpy()
@@ -44,8 +45,8 @@ def logistic_regression_predict(date):
     clf.fit(X_norm, y)
     clf_predictions = clf.predict(future_X).tolist()
 
-    r_fighters = future_df.loc[:, 2].values.tolist()
-    b_fighters = future_df.loc[:, 3].values.tolist()
+    r_fighters = future_df.loc[:, 3].values.tolist()
+    b_fighters = future_df.loc[:, 4].values.tolist()
 
     return clf_predictions, r_fighters, b_fighters, event_name
 

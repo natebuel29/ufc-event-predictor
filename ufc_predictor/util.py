@@ -4,7 +4,7 @@ import numpy as np
 
 fdf_labels = ['rf', 'bf', 'winner', 'rwins', 'bwins', 'rloses', 'bloses', 'rslpm', 'bslpm', 'rstrac', 'bstrac', 'rsapm', 'bsapm', 'rstrd', 'bstrd', 'rtdav',
               'btdav', 'rtdac', 'btdac', 'rtdd', 'btdd', 'rsubav', 'bsubav']
-future_df_labels = ['date', 'rf', 'bf', 'rwins', 'bwins', 'rloses', 'bloses', 'rslpm', 'bslpm', 'rstrac', 'bstrac', 'rsapm', 'bsapm', 'rstrd', 'bstrd', 'rtdav',
+future_df_labels = ['date', 'event_name', 'rf', 'bf', 'rwins', 'bwins', 'rloses', 'bloses', 'rslpm', 'bslpm', 'rstrac', 'bstrac', 'rsapm', 'bsapm', 'rstrd', 'bstrd', 'rtdav',
                     'btdav', 'rtdac', 'btdac', 'rtdd', 'btdd', 'rsubav', 'bsubav']
 stat_indexes = [3, 4, 12, 13, 14, 15, 16, 17, 18, 19]
 
@@ -61,7 +61,9 @@ def construct_future_fight_dataframe(df, fighter_stats):
         date = row[3]
         rf = row[1]
         bf = row[2]
+        event_name = row[6]
         temp_ar.append(date)
+        temp_ar.append(event_name)
         temp_ar.append(rf)
         temp_ar.append(bf)
 
@@ -72,7 +74,6 @@ def construct_future_fight_dataframe(df, fighter_stats):
             bstat = bf_stats[index]
             temp_ar.append(rstat)
             temp_ar.append(bstat)
-
         X = pd.concat(
             [pd.DataFrame([temp_ar], columns=future_df_labels), X], ignore_index=True)
     return X
