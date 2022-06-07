@@ -9,7 +9,6 @@ pandas = "*"
 flask = "*"
 sklearn = "*"
 flask-mysql = "*"
-mysqlclient = "*"
 pymysql = "*"
 
 [dev-packages]

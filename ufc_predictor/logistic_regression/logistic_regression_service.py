@@ -16,7 +16,6 @@ def logistic_regression_predict(date):
     fights_df = pd.DataFrame(cursor.fetchall()).loc[:, 1:]
 
     # grab event name
-    print(future_df)
     event_name = future_df.loc[1, 2]
 
     future_X = future_df.loc[:, 5:].astype(float).to_numpy()
