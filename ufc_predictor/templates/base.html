@@ -1,15 +1,23 @@
 <!doctype html>
 <title>{% block title %}{% endblock %} - UFC Fight Predictor</title>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-<nav>
-  <h1>UFC Event Predictor</h1>
-</nav>
+<div class="header_wrapper">
+<header>
+  <nav>
+    <h1 class="header_title">UFC Event Predictor</h1>
+  </nav>
+</header>
+</div>
 <section class="content">
-  <header>
+  <div>
     {% block header %}{% endblock %}
-  </header>
+  </div>
   {% for message in get_flashed_messages() %}
     <div class="flash">{{ message }}</div>
   {% endfor %}
   {% block content %}{% endblock %}
 </section>
+
+<div>
+  <p>DISCLAIMER WILL GO HERE - PLEASE NO SUE ME FOR LOSE MONEY UwU</p>
+</div>
