@@ -35,6 +35,14 @@ header {
     background-color: #242b31;
 }
 
+.table_wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    width: 75vw
+}
 
 .header_title {
     padding: 20px;
@@ -50,6 +58,29 @@ header {
     background-color: red;
     width: 100%;
     height: 95px;
+}
+
+.disclaimer_container {
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+p {
+    padding: 5px;
+    width: 60vw;
+}
+
+.event_h1_container {
+    display: flex;
+    justify-content: center;
+}
+
+.disclaimer_wrapper {
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: red;
+    border-radius: 5px;
 }
 
 body {
