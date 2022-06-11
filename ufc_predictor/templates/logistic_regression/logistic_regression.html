@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="event_h1_container">
-        <div class="event_h1_wrapper">
+    <header class="event__h1__container">
+        <div class="event__h1__wrapper">
             <h1>{{event_date}}: {{event_name}}</h1>
-        </div>
-    </div>
+        </header>
     <div class="table_wrapper">
-        <table>
+        <table class="event__table">
             {% for results,rf,bf in results_rf_bf%}
                 <tr>
                     {%if results == 1.0 %}
