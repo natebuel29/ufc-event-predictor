@@ -1,26 +1,28 @@
 {% extends 'base.html' %}
 
-{% block header %}
-  <h2>{% block title %}Logistic Regression{% endblock %}</h2>
-{% endblock %}
-
 {% block content %}
-    <h1>{{event_name}}</h1>
-    <table>
-        {% for results,rf,bf in results_rf_bf%}
-            <tr>
-                {%if results == 1.0 %}
-                    <th class="win">W</th>
-                {% else %}
-                    <th class="lose">L</th>
-                {% endif %}
-                <th>{{rf}}</th>
-                <th>{{bf}}</th>
-                {%if results == 1.0 %}
-                    <th class="lose">L</th>
-                {% else %}
-                    <th class="win">W</th>
-                {% endif %}
-            </tr>
-        {% endfor %}
+    <header class="event__h1__container">
+        <div class="event__h1__wrapper">
+            <h1>{{event_date}}: {{event_name}}</h1>
+        </header>
+    <div class="table_wrapper">
+        <table class="event__table">
+            {% for results,rf,bf in results_rf_bf%}
+                <tr>
+                    {%if results == 1.0 %}
+                        <th class="win">W</th>
+                    {% else %}
+                        <th class="lose">L</th>
+                    {% endif %}
+                    <th>{{rf}}</th>
+                    <th>{{bf}}</th>
+                    {%if results == 1.0 %}
+                        <th class="lose">L</th>
+                    {% else %}
+                        <th class="win">W</th>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock %}

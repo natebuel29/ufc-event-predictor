@@ -14,9 +14,6 @@ def create_app(config_object):
     from .logistic_regression import views
     app.register_blueprint(views.logistic_regresion_views)
 
-    @app.route('/hello')
-    def hello():
-        return 'Hello World!'
     return app
 
 

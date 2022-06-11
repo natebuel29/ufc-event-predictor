@@ -1,15 +1,25 @@
 <!doctype html>
-<title>{% block title %}{% endblock %} - UFC Fight Predictor</title>
+<title>UFC Fight Predictor</title>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-<nav>
-  <h1>UFC Event Predictor</h1>
-</nav>
-<section class="content">
-  <header>
-    {% block header %}{% endblock %}
+<div class="header__wrapper">
+  <header class="base__header">
+    <nav>
+      <h1 class="base__header__h1">UFC Event Predictor</h1>
+    </nav>
   </header>
-  {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-  {% endfor %}
-  {% block content %}{% endblock %}
-</section>
+</div>
+<main>
+  <section class="content">
+    {% for message in get_flashed_messages() %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+    <div class="disclaimer__container">
+      <div class="disclaimer__wrapper">
+        <p> <b>DISCLAIMER:</b> Please use this app responsibly! The developer is not responsible for any financial losses based on predictions from this app. This model currently has about a 70% accuracy rate, so probably not the best idea to toss the house down on it :p</p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer></footer>
+

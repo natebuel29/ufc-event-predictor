@@ -1,7 +1,6 @@
 html {
     font-family: sans-serif;
     background: #eee;
-    padding: 1rem;
 }
 
 table,
@@ -24,5 +23,69 @@ th.win {
 
 table tr:nth-child(even) {
     background-color: rgba(50, 50, 50, 0.3);
-    ;
+}
+
+p {
+    padding: 5px;
+    width: 60vw;
+}
+
+body {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+table {
+    width: 75vw
+}
+
+
+.base__header {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    height: 65px;
+    justify-content: center;
+    text-align: center;
+    background-color: #242b31;
+}
+
+.base__header__h1 {
+    padding: 20px;
+    color: white;
+    background: red;
+    flex-grow: 1;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+
+}
+
+.disclaimer__container {
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.disclaimer__wrapper {
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: red;
+    border-radius: 5px;
+}
+
+.event__h1__container {
+    display: flex;
+    justify-content: center;
+}
+
+.header__wrapper {
+    background-color: red;
+    width: 100%;
+    height: 95px;
+}
+
+.table_wrapper {
+    display: flex;
+    justify-content: center;
 }
