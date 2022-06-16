@@ -1,4 +1,7 @@
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches:
+      - main
 jobs:
   aws_cdk:
     runs-on: ubuntu-latest
@@ -16,7 +19,7 @@ jobs:
           aws-region: 'us-east-1'
       - name: create zip of repo
         run: zip -r ./ufc-predictor-aws-infra/app.zip . -x '*ufc-predictor-aws-infra*'
-      - name: change directory to ufc-predictor-aws-infra
+      - name: install dependencies and kick off cdk deploy
         run: |
           cd ./ufc-predictor-aws-infra
           npm install -g cdk
