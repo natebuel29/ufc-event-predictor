@@ -22,4 +22,5 @@ jobs:
           npm install -g cdk
           npm install
           npm run build
+          cdk synth
           cdk deploy --all --require-approval never
