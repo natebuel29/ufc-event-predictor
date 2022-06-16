@@ -17,7 +17,9 @@ jobs:
       - name: create zip of repo
         run: zip -r ./ufc-predictor-aws-infra/app.zip . -x '*ufc-predictor-aws-infra*'
       - name: change directory to ufc-predictor-aws-infra
-        run: cd ./ufc-predictor-aws-infra
+        run: |
+          cd ./ufc-predictor-aws-infra
+          ls
       - name: ls directory
         run: ls 
       - name: install dependencies
