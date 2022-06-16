@@ -13,7 +13,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: 'us-west-2'
+          aws-region: 'us-east-1'
       - name: create zip of repo
         run: zip -r ./ufc-predictor-aws-infra/app.zip . -x '*ufc-predictor-aws-infra*'
       - name: change directory to ufc-predictor-aws-infra
@@ -23,5 +23,4 @@ jobs:
           npm install
           npm run build
           cdk synth
-          cdk bootstrap
           cdk deploy --all --require-approval never
