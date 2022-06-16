@@ -19,12 +19,6 @@ jobs:
       - name: change directory to ufc-predictor-aws-infra
         run: |
           cd ./ufc-predictor-aws-infra
-          ls
-      - name: ls directory
-        run: ls 
-      - name: install dependencies
-        run: npm install
-      - name: build cdk application
-        run: npm run build
-      - name: deploy cdk application
-        run: cdk deploy
+          npm install
+          npm run build
+          cdk deploy
