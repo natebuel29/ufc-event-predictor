@@ -22,4 +22,4 @@ jobs:
           npm install -g cdk
           npm install
           npm run build
-          cdk deploy
+          cdk deploy --all --require-approval never
