@@ -19,6 +19,7 @@ jobs:
       - name: change directory to ufc-predictor-aws-infra
         run: |
           cd ./ufc-predictor-aws-infra
+          npm install -g cdk
           npm install
           npm run build
           cdk deploy
