@@ -2,18 +2,14 @@ from sklearn.linear_model import LogisticRegression
 import pandas as pd
 import numpy as np
 from sklearn.feature_selection import RFE
-from ufc_predictor.extensions import mysql
+from ufc_predictor import db
+from ufc_predictor.util import standardize
 
 
-def logistic_regression_predict(date):
-    conn = mysql.connect()
-    cursor = conn.cursor()
-    cursor.execute(f"SELECT * FROM future_matchups WHERE date_='{date}'")
+def predict(date):
+    future_df = db.get_future_machups(date)
 
-    future_df = pd.DataFrame(cursor.fetchall()).loc[:, 2:]
-
-    cursor.execute(f"SELECT * FROM past_matchups")
-    fights_df = pd.DataFrame(cursor.fetchall()).loc[:, 1:]
+    fights_df = db.get_past_matchups()
 
     # grab event name
     event_name = future_df.loc[1, 2]
@@ -54,11 +50,3 @@ def logistic_regression_predict(date):
     b_fighters = future_df.loc[:, 4].values.tolist()
 
     return clf_predictions, r_fighters, b_fighters, event_name
-
-
-def standardize(X):
-    X_norm = X.copy()
-    mu = np.mean(X_norm, axis=0)
-    sigma = np.std(X_norm, axis=0)
-    X_norm = (X_norm - mu)/sigma
-    return X_norm
