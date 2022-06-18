@@ -113,3 +113,21 @@ def create_future_matchups_table(conn):
         conn.commit()
 
     cursor.close()
+
+
+def get_future_machups(date):
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    cursor.execute(f"SELECT * FROM future_matchups WHERE date_='{date}'")
+    future_df = pd.DataFrame(cursor.fetchall()).loc[:, 2:]
+    cursor.close()
+    return future_df
+
+
+def get_past_matchups():
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    cursor.execute(f"SELECT * FROM past_matchups")
+    fights_df = pd.DataFrame(cursor.fetchall()).loc[:, 1:]
+    cursor.close()
+    return fights_df

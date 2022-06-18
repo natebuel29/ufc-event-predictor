@@ -7,14 +7,9 @@ from ufc_predictor.util import standardize
 
 
 def predict(date):
-    conn = db.mysql.connect()
-    cursor = conn.cursor()
-    cursor.execute(f"SELECT * FROM future_matchups WHERE date_='{date}'")
+    future_df = db.get_future_machups(date)
 
-    future_df = pd.DataFrame(cursor.fetchall()).loc[:, 2:]
-
-    cursor.execute(f"SELECT * FROM past_matchups")
-    fights_df = pd.DataFrame(cursor.fetchall()).loc[:, 1:]
+    fights_df = db.get_past_matchups()
 
     # grab event name
     event_name = future_df.loc[1, 2]
