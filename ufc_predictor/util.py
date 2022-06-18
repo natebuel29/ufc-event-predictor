@@ -77,3 +77,11 @@ def construct_future_fight_dataframe(df, fighter_stats):
         X = pd.concat(
             [pd.DataFrame([temp_ar], columns=future_df_labels), X], ignore_index=True)
     return X
+
+
+def standardize(X):
+    X_norm = X.copy()
+    mu = np.mean(X_norm, axis=0)
+    sigma = np.std(X_norm, axis=0)
+    X_norm = (X_norm - mu)/sigma
+    return X_norm
