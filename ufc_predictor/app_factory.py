@@ -3,6 +3,7 @@ from ufc_predictor import db
 
 
 def create_app(config_object):
+    # TODO: Add logs
     app = Flask(__name__)
     app.config.from_object(config_object)
     db.mysql.init_app(app)

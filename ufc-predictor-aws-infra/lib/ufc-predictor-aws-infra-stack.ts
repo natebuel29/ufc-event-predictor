@@ -71,7 +71,7 @@ export class UfcPredictorInfraStack extends Stack {
       {
         namespace: "aws:elasticbeanstalk:application:environment",
         optionName: "FLASK_APP",
-        value: "ufc_event_predictor"
+        value: "application"
       },
       {
         namespace: "aws:elasticbeanstalk:application:environment",
