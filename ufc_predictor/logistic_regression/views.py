@@ -13,10 +13,10 @@ logistic_regresion_views = Blueprint('logistic_regression', __name__)
 def logistic_regression():
     saturday_date = ""
     print(f"weekday is {pendulum.now().weekday()}")
-    if pendulum.now().weekday() != 5:
-        saturday_date = pendulum.now().next(pendulum.SATURDAY).format('YYYY-MM-DD')
-    elif pendulum.now().weekday() == 6 or pendulum.now().weekday() == 0:
+    if pendulum.now().weekday() == 6:
         saturday_date = pendulum.now().previous(pendulum.SATURDAY).format('YYYY-MM-DD')
+    elif pendulum.now().weekday() != 5:
+        saturday_date = pendulum.now().next(pendulum.SATURDAY).format('YYYY-MM-DD')
     else:
         saturday_date = pendulum.now().format('YYYY-MM-DD')
 
