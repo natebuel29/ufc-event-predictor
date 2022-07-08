@@ -8,6 +8,7 @@ from ufc_predictor.util import standardize
 
 def predict(date):
     future_df = db.get_future_machups(date)
+    print(future_df)
 
     fights_df = db.get_past_matchups()
 

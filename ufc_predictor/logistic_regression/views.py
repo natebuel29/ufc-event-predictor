@@ -12,16 +12,20 @@ logistic_regresion_views = Blueprint('logistic_regression', __name__)
 @logistic_regresion_views.route('/')
 def logistic_regression():
     saturday_date = ""
-    print(f"weekday is {pendulum.now().weekday()}")
     if pendulum.now().weekday() == 6:
         saturday_date = pendulum.now().previous(pendulum.SATURDAY).format('YYYY-MM-DD')
     elif pendulum.now().weekday() != 5:
-        saturday_date = pendulum.now().next(pendulum.SATURDAY).format('YYYY-MM-DD')
+        # UPDATE THIS BACK TO SATURDAY BEFORE MERGING
+        saturday_date = pendulum.now().next(pendulum.FRIDAY).format('YYYY-MM-DD')
     else:
         saturday_date = pendulum.now().format('YYYY-MM-DD')
 
-    results, r_fighters, b_fighters, event_name = logistic_regression_service.predict(
-        saturday_date)
+    try:
+        results, r_fighters, b_fighters, event_name = logistic_regression_service.predict(
+            saturday_date)
+    except TypeError:
+        return redirect(url_for("invalid_event.invalid_date", date=saturday_date))
+
     results_rf_bf = zip(results, r_fighters, b_fighters)
 
     return render_template('logistic_regression/logistic_regression.html', results_rf_bf=results_rf_bf, event_name=event_name, event_date=saturday_date)

@@ -10,7 +10,10 @@ def create_app(config_object):
     db.create_past_matchups_table(db.mysql.connect())
     db.create_future_matchups_table(db.mysql.connect())
 
-    from .logistic_regression import views
-    app.register_blueprint(views.logistic_regresion_views)
+    from .logistic_regression import views as logistic_regression
+    app.register_blueprint(logistic_regression.logistic_regresion_views)
+
+    from .invalid_event import views as invalid_event
+    app.register_blueprint(invalid_event.invalid_event_views)
 
     return app
