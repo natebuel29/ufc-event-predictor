@@ -85,6 +85,13 @@ table {
     height: 95px;
 }
 
+.no_event_header_wrapper {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
 .table_wrapper {
     display: flex;
     justify-content: center;
