@@ -15,8 +15,7 @@ def logistic_regression():
     if pendulum.now().weekday() == 6:
         saturday_date = pendulum.now().previous(pendulum.SATURDAY).format('YYYY-MM-DD')
     elif pendulum.now().weekday() != 5:
-        # UPDATE THIS BACK TO SATURDAY BEFORE MERGING
-        saturday_date = pendulum.now().next(pendulum.FRIDAY).format('YYYY-MM-DD')
+        saturday_date = pendulum.now().next(pendulum.SATURDAY).format('YYYY-MM-DD')
     else:
         saturday_date = pendulum.now().format('YYYY-MM-DD')
 
