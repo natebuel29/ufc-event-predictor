@@ -4,7 +4,7 @@ ufc-event-predictor is a Flask web app that displays predictions for weekly UFC 
 
 # Goals
 
-Every Saturday my friends and I hop into a discord call to watch UFC fights and play video games. Watching UFC has become my one of my favorite thing to do with my Saturday nights. We often try to predict the results of an event. We usually have a couple of disagreements in our predictions and have friendly discusssions about them. One of the goals of this project was to develop a ML model that I can share with my friends and others in the UFC community. Being able to compare the actual results with our predicted results and the models predicted results will be fascinating.
+Every Saturday my friends and I hop into a discord call to watch UFC fights and play video games. Watching UFC has become my one of my favorite thing to do with my Saturday nights. We often try to predict the results of an event and have a couple of disagreements in our predictions. It always feels good to be the one who correctly predicts a fight so I decided to make this project. One of the goals of this project is to develop a ML model that predicts UFC events that I can share with my friends and others in the UFC community. Being able to compare the actual results with our predicted results and the models predicted results will be fascinating.
 
 Another goal of this project is to use an outside interest (UFC) to learn various ML algorithms. Before bringing an algorithm into this project, I will research and implement the algorithm from scratch in [ufc-stats-predictor-playground](https://github.com/natebuel29/ufc-stats-predictor-playground/tree/main/predictor_playground). Only after learning the algorithm will I bring it into this project using `scikit-learn`.
 
