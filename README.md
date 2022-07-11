@@ -11,7 +11,7 @@ Another goal of this project is to use an outside interest (UFC) to learn variou
 
 # Data
 
-All fighter and event data used is scraped from [ufc-stats-scraper](http://ufcstats.com/statistics/events/completed). The following fighter attributes are used by the model to predict fights:
+All fighter and event data used is scraped from [ufcstats.com](http://ufcstats.com/statistics/events/completed). The following fighter attributes are used by the model to predict fights:
 
 - Wins
 
