@@ -1,6 +1,7 @@
 from flaskext.mysql import MySQL
 from ufc_predictor.util import construct_fight_dataframe, construct_future_fight_dataframe
 import pandas as pd
+import logging
 
 mysql = MySQL()
 
@@ -116,6 +117,7 @@ def create_future_matchups_table(conn):
 
 
 def get_future_machups(date):
+    logging.info("Grabbing future UFC fights from database for {date}")
     conn = mysql.connect()
     cursor = conn.cursor()
     cursor.execute(f"SELECT * FROM future_matchups WHERE date_='{date}'")
@@ -125,6 +127,7 @@ def get_future_machups(date):
 
 
 def get_past_matchups():
+    logging.info("Grabbing past UFC fights...")
     conn = mysql.connect()
     cursor = conn.cursor()
     cursor.execute(f"SELECT * FROM past_matchups")
