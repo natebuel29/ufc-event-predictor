@@ -4,6 +4,7 @@ import numpy as np
 from sklearn.feature_selection import RFE
 from ufc_predictor import db
 from ufc_predictor.util import standardize
+import logging
 
 
 def predict(date):
@@ -42,6 +43,7 @@ def predict(date):
     # fit model
     clf.fit(X_norm, y)
 
+    logging.info(f"calculating predictions for UFC event on {date}")
     # predict
     clf_predictions = clf.predict(future_X).tolist()
 
