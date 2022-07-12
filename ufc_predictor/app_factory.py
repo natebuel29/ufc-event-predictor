@@ -7,6 +7,7 @@ def create_app(config_object):
     logging.info(
         f"Creating ufc-event-predictor app for {config_object.ENVIRONMENT} env")
     app = Flask(__name__)
+    app.logger.setLevel(logging.INFO)
     app.config.from_object(config_object)
     db.mysql.init_app(app)
     # TODO: delete these two functions after the db migration

@@ -1,9 +1,8 @@
 from flask import (
-    Blueprint, current_app, flash, redirect, render_template, request, url_for,
+    Blueprint, current_app, flash, redirect, render_template, request, url_for, app
 )
 import numpy as np
 import pendulum
-import logging
 from . import logistic_regression_service
 
 logistic_regresion_views = Blueprint('logistic_regression', __name__)
@@ -19,11 +18,12 @@ def logistic_regression():
     else:
         saturday_date = pendulum.now().format('YYYY-MM-DD')
     try:
-        logging.info(f"Fetching predictions for UFC event on {saturday_date}")
+        app.logging.info(
+            f"Fetching predictions for UFC event on {saturday_date}")
         results, r_fighters, b_fighters, event_name = logistic_regression_service.predict(
             saturday_date)
     except TypeError:
-        logging.error(
+        app.logging.error(
             f"No UFC event on {saturday_date} - redirecting user to invalid_date url")
         return redirect(url_for("invalid_event.invalid_date", date=saturday_date))
 
