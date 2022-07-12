@@ -29,4 +29,7 @@ def logistic_regression():
 
     results_rf_bf = zip(results, r_fighters, b_fighters)
 
+    app.logging.info(
+        f"Successfully predicted UFC event on {saturday_date} - rendering logistic_regression template")
+
     return render_template('logistic_regression/logistic_regression.html', results_rf_bf=results_rf_bf, event_name=event_name, event_date=saturday_date)
