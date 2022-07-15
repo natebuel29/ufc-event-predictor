@@ -1,7 +1,6 @@
 from flask import Flask
 from ufc_predictor import db
 from logging.config import dictConfig
-import boto3
 
 
 def create_app(config_object):
