@@ -3,6 +3,7 @@ import { Construct } from 'constructs';
 import * as s3Assets from 'aws-cdk-lib/aws-s3-assets'
 import * as elasticbeanstalk from 'aws-cdk-lib/aws-elasticbeanstalk';
 import * as iam from 'aws-cdk-lib/aws-iam'
+import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
 
 
 export class UfcPredictorInfraStack extends Stack {
@@ -35,7 +36,13 @@ export class UfcPredictorInfraStack extends Stack {
       assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
     });
     const managedPolicy = iam.ManagedPolicy.fromAwsManagedPolicyName('AWSElasticBeanstalkWebTier')
-    myRole.addManagedPolicy(managedPolicy);
+
+    myRole.addManagedPolicy(managedPolicy)
+    myRole.addToPolicy(new PolicyStatement({
+      resources: ['*'],
+      actions: ["secretsmanager:GetSecretValue"],
+
+    }))
 
     const myProfileName = `${appName}-InstanceProfile`
 
