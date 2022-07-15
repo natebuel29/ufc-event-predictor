@@ -9,7 +9,7 @@ class BaseConfig(object):
 
 
 class DevConfig(BaseConfig):
-    client = boto3.client('secretsmanager')
+    client = boto3.client('secretsmanager', region_name='us-east-1')
     secretMap = client.get_secret_value(
         SecretId="UfcPredictorRdsSecret-extTBzicS2ON", VersionStage="AWSCURRENT")
     rdsSecret = json.loads(secretMap.get("SecretString"))
