@@ -1,18 +1,24 @@
+import boto3
+import json
+
+
 class BaseConfig(object):
     APP_NAME = "ufc_fight_predictor"
     DEBUG = False
     SECRET_KEY = "SOME TEST SECRET"
 
-    # DATABASE STUFF WILL GO HERE?
-
 
 class DevConfig(BaseConfig):
+    client = boto3.client('secretsmanager')
+    secretMap = client.get_secret_value(
+        SecretId="UfcPredictorRdsSecret-extTBzicS2ON", VersionStage="AWSCURRENT")
+    rdsSecret = json.loads(secretMap.get("SecretString"))
     ENVIRONMENT = "dev"
     DEBUG = True
-    MYSQL_DATABASE_USER = 'mysqlAdmin'
-    MYSQL_DATABASE_PASSWORD = '5bc,cx^h=H8KbdN3x.mSd95jMmZmwK'
-    MYSQL_DATABASE_DB = 'thisisatest'
-    MYSQL_DATABASE_HOST = 'uu1744jdr5e80dc.cdxfj1ghajls.us-east-1.rds.amazonaws.com'
+    MYSQL_DATABASE_USER = rdsSecret.get("username")
+    MYSQL_DATABASE_PASSWORD = rdsSecret.get("password")
+    MYSQL_DATABASE_DB = rdsSecret.get("dbname")
+    MYSQL_DATABASE_HOST = rdsSecret.get("host")
 
 
 class ProductionConfig(BaseConfig):
