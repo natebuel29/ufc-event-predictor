@@ -1,7 +1,7 @@
 import random
 import pandas as pd
 import numpy as np
-
+import pendulum
 fdf_labels = ['rf', 'bf', 'winner', 'rwins', 'bwins', 'rloses', 'bloses', 'rslpm', 'bslpm', 'rstrac', 'bstrac', 'rsapm', 'bsapm', 'rstrd', 'bstrd', 'rtdav',
               'btdav', 'rtdac', 'btdac', 'rtdd', 'btdd', 'rsubav', 'bsubav']
 future_df_labels = ['date', 'event_name', 'rf', 'bf', 'rwins', 'bwins', 'rloses', 'bloses', 'rslpm', 'bslpm', 'rstrac', 'bstrac', 'rsapm', 'bsapm', 'rstrd', 'bstrd', 'rtdav',
@@ -85,3 +85,41 @@ def standardize(X):
     sigma = np.std(X_norm, axis=0)
     X_norm = (X_norm - mu)/sigma
     return X_norm
+
+
+def genererate_inputs_n_labels(future_df, fights_df):
+    future_X = future_df.loc[:, 5:].astype(float).to_numpy()
+    future_X = standardize(future_X)
+
+    # Get data for model
+    X = fights_df.loc[:, 4:].astype(float).to_numpy()
+    X = standardize(X)
+    y = fights_df.loc[:, 3].astype(float).to_numpy()
+
+    return X, y, future_X
+
+
+def saturday_date():
+    if pendulum.now().weekday() == 6:
+        saturday_date = pendulum.now().previous(pendulum.SATURDAY).format('YYYY-MM-DD')
+    elif pendulum.now().weekday() != 5:
+        saturday_date = pendulum.now().next(pendulum.SATURDAY).format('YYYY-MM-DD')
+    else:
+        saturday_date = pendulum.now().format('YYYY-MM-DD')
+
+    return saturday_date
+
+
+def event_data(future_df):
+    r_fighters = future_df.loc[:, 3].values.tolist()
+    b_fighters = future_df.loc[:, 4].values.tolist()
+    event_name = future_df.loc[1, 2]
+
+    return r_fighters, b_fighters, event_name
+
+
+def add_bias(X):
+    rows, columns = X.shape
+    X = np.concatenate([np.ones((rows, 1)),
+                        X], axis=1)
+    return X
