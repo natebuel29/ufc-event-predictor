@@ -1,5 +1,3 @@
-import logging
-
 
 class ML_Model_Service:
     def __init__(self, clf):
