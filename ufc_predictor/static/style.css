@@ -1,3 +1,11 @@
+a:link {
+    text-decoration: none;
+}
+
+a {
+    color: white;
+}
+
 html {
     font-family: sans-serif;
     background: #eee;
@@ -45,7 +53,7 @@ table {
     display: flex;
     flex-flow: column;
     align-items: center;
-    height: 65px;
+    height: 69px;
     justify-content: center;
     text-align: center;
     background-color: #242b31;
@@ -54,11 +62,37 @@ table {
 .base__header__h1 {
     padding: 20px;
     color: white;
-    background: red;
+    background: #b20101;
     flex-grow: 1;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
 
+}
+
+.base__nav {
+    display: flex;
+    flex-direction: row;
+}
+
+.base__header__title {
+    padding: 20px;
+    background-color: #242b31;
+    flex-grow: 1;
+    color: white;
+}
+
+.base__header__nonactive {
+    padding: 20px;
+    background-color: #242b31;
+    flex-grow: 1;
+    color: white;
+}
+
+.base__header__active {
+    padding: 20px;
+    color: white;
+    background: #b20101;
+    flex-grow: 1;
 }
 
 .disclaimer__container {
@@ -70,7 +104,7 @@ table {
 .disclaimer__wrapper {
     outline-style: solid;
     outline-width: 2px;
-    outline-color: red;
+    outline-color: #b20101;
     border-radius: 5px;
 }
 
@@ -80,7 +114,7 @@ table {
 }
 
 .header__wrapper {
-    background-color: red;
+    background-color: #b20101;
     width: 100%;
     height: 95px;
 }

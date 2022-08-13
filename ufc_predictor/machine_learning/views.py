@@ -50,14 +50,14 @@ def logistic_regression():
     results_rf_bf = zip(results, r_fighters, b_fighters)
 
     app.logging.info(
-        f"Successfully predicted UFC event on {saturday_date} - rendering logistic_regression template")
+        f"Successfully predicted UFC event on {saturday_date} - rendering machine_learning template with log reg parameters")
 
-    return render_template('logistic_regression/logistic_regression.html', results_rf_bf=results_rf_bf, event_name=event_name, event_date=saturday_date)
+    return render_template('machine_learning/machine_learning_template.html', results_rf_bf=results_rf_bf, event_name=event_name, event_date=saturday_date, class_name="log_reg")
 
 # temp support vector machines
 
 
-@machine_learning_views.route('/support-vector-machines')
+@machine_learning_views.route('/svm')
 def support_vector_machine():
     try:
         saturday_date = util.saturday_date()
@@ -87,6 +87,6 @@ def support_vector_machine():
     results_rf_bf = zip(results, r_fighters, b_fighters)
 
     app.logging.info(
-        f"Successfully predicted UFC event on {saturday_date} - rendering logistic_regression template")
+        f"Successfully predicted UFC event on {saturday_date} - rendering machine_learning template with svm parameters")
 
-    return render_template('logistic_regression/logistic_regression.html', results_rf_bf=results_rf_bf, event_name=event_name, event_date=saturday_date)
+    return render_template('machine_learning/machine_learning_template.html', results_rf_bf=results_rf_bf, event_name=event_name, event_date=saturday_date, class_name="svm")

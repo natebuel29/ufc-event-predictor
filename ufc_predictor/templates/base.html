@@ -3,8 +3,11 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 <div class="header__wrapper">
   <header class="base__header">
-    <nav>
-      <h1 class="base__header__h1">UFC Event Predictor</h1>
+    <nav class="base__nav">
+      <h1 class="base__header__title">UFC Event Predictor</h1>
+      <h1 id="about" class="base__header__nonactive">About</h1>
+      <h1 id="log_reg" class="base__header__nonactive"><a href="{{url_for('machine_learning.logistic_regression')}}">Log Reg<a/></h1>
+      <h1 id="svm" class="base__header__nonactive"><a href="{{url_for('machine_learning.support_vector_machine')}}">SVM</a></h1>
     </nav>
   </header>
 </div>
