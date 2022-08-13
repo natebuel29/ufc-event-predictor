@@ -52,7 +52,7 @@ def logistic_regression():
     app.logging.info(
         f"Successfully predicted UFC event on {saturday_date} - rendering machine_learning template with log reg parameters")
 
-    return render_template('machine_learning/machine_learning_template.html', results_rf_bf=results_rf_bf, event_name=event_name, event_date=saturday_date, class_name="log_reg")
+    return render_template('machine_learning/machine_learning_template.html', results_rf_bf=results_rf_bf, event_name=event_name, event_date=saturday_date, header="Logistic Regression", class_name="log_reg")
 
 # temp support vector machines
 
@@ -89,4 +89,4 @@ def support_vector_machine():
     app.logging.info(
         f"Successfully predicted UFC event on {saturday_date} - rendering machine_learning template with svm parameters")
 
-    return render_template('machine_learning/machine_learning_template.html', results_rf_bf=results_rf_bf, event_name=event_name, event_date=saturday_date, class_name="svm")
+    return render_template('machine_learning/machine_learning_template.html', results_rf_bf=results_rf_bf, event_name=event_name, event_date=saturday_date, header="Support Vector Machines", class_name="svm")
