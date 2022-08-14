@@ -5,7 +5,6 @@ class ML_Model_Service:
 
     def predict(self, X, y, future_X):
         self.clf.fit(X, y)
-        # predict
         clf_predictions = self.clf.predict(future_X).tolist()
 
         return clf_predictions
