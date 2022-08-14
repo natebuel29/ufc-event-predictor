@@ -54,8 +54,6 @@ def logistic_regression():
 
     return render_template('machine_learning/machine_learning_template.html', results_rf_bf=results_rf_bf, event_name=event_name, event_date=saturday_date, algorithm="Logistic Regression", class_name="log_reg")
 
-# temp support vector machines
-
 
 @machine_learning_views.route('/svm')
 def support_vector_machine():
@@ -66,7 +64,7 @@ def support_vector_machine():
         r_fighters, b_fighters, event_name = util.event_data(future_df)
         X, y, future_X = util.genererate_inputs_n_labels(future_df, fights_df)
 
-        # parameters of kernel=rbf, c=5, and gamma=0.01 are the best performing parameters according to GridSearch
+        # parameters of kernel=rbf, c=5, and gamma=0.01 were the parameters selected by GridSearchCV
         clf = svm.SVC(kernel="rbf", C=5, gamma=0.01)
 
         # add bias
