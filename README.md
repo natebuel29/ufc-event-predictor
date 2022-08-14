@@ -37,10 +37,20 @@ All fighter and event data used is scraped from [ufcstats.com](http://ufcstats.c
 
  ## Logistic Regression
 
- As of 7/10, the only ML algorithm used in this project is [Logistic Regression](https://en.wikipedia.org/wiki/Logistic_regression). Logistic Regression is one of the first classification ML algorithms that any course will teach you. LR makes a prediction (the dependent variable) based off of the relationship between independent variables. In this project, the model will predict the winner of the fight (either blue corner or red corner) and the independent variables are all of the attributes documented in the `Data` section.
+Logistic Regression](https://en.wikipedia.org/wiki/Logistic_regression) is one of the first classification ML algorithms that any course will teach you. LR makes a prediction (the dependent variable) based off of the relationship between independent variables. In this project, the model will predict the winner of the fight (either blue corner or red corner) and the independent variables are all of the attributes documented in the `Data` section.
+
+ ## Support Vector Machines
+
+[Support Vector Machines](https://en.wikipedia.org/wiki/Support-vector_machine) is a classification ML algorithm that determines a decision boundary between two categories of data and maximizes the width of the gap between the two categories. After the decision boundary has been found through optimization and training, predictions are made by mapping data into the space and determining what side of the decision boundary the point lies on.
+
+SVM has some important hyperparameters. Firstly, the kernel parameter determines what kernel function should be used in the algorithm. A [kernel function](https://en.wikipedia.org/wiki/Kernel_method) is a method used to convert linearly inseparable data to linearly separable by transforming the data into higher dimensions. A few kernel methods are linear, polynomial, and radial basis function. Next, the C parameter tells the optimization how much you want to avoid misclassifying the training examples. Large values of C will choose a smaller margin with fewer misclassifications and large values of C will choose a more significant margin with more misclassifications. The last parameter I will talk about is the gamma parameter. Gamma defines how far the influence of a single training example reaches. A low value means 'far' and a high value means 'close'.
+
+For our data, the following parameters were selected using [sklearn.GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html):
+
+- `Kernel = rbf`
+- `C = 5`
+- `gamma = .001`
 
 ## PLANNED ALGORITHMS
-
-`Support Vector Machines`
 
 `Neural Network`

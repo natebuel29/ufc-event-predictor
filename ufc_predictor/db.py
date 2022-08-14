@@ -117,7 +117,7 @@ def create_future_matchups_table(conn):
 
 
 def get_future_machups(date):
-    logging.info("Grabbing future UFC fights from database for {date}")
+    logging.info(f"Grabbing future UFC fights from database for {date}")
     conn = mysql.connect()
     cursor = conn.cursor()
     cursor.execute(f"SELECT * FROM future_matchups WHERE date_='{date}'")
