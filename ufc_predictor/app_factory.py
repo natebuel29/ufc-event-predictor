@@ -1,5 +1,5 @@
 from flask import Flask
-from ufc_predictor import db
+from ufc_predictor import db, ml_models, util
 from logging.config import dictConfig
 
 
@@ -35,5 +35,17 @@ def create_app(config_object):
 
     from .invalid_event import views as invalid_event
     app.register_blueprint(invalid_event.invalid_event_views)
-
+    fit_ml_models()
     return app
+
+
+def fit_ml_models():
+    saturday_date = util.saturday_date()
+    future_df = db.get_future_machups(saturday_date)
+    fights_df = db.get_past_matchups()
+    r_fighters, b_fighters, event_name = util.event_data(future_df)
+    X, y, future_X = util.genererate_inputs_n_labels(future_df, fights_df)
+
+    ml_models.log_reg_clf.fit(X, y)
+    X = util.add_bias(X)
+    ml_models.svm_clf.fit(X, y)

@@ -17,7 +17,6 @@ def logistic_regression():
         r_fighters, b_fighters, event_name = util.event_data(future_df)
         X, y, future_X = util.genererate_inputs_n_labels(future_df, fights_df)
         log_clf = ml_models.log_reg_clf
-        log_clf.fit(X, y)
         future_X = future_X[:, log_clf.fit_support]
         future_X = util.add_bias(future_X)
         app.logging.info(
@@ -53,7 +52,6 @@ def support_vector_machine():
         # add bias
         X = util.add_bias(X)
         future_X = util.add_bias(future_X)
-        clf.fit(X, y)
         results = clf.predict(future_X)
 
         app.logging.info(
