@@ -1,3 +1,4 @@
+from pytz import utc
 from flask import Flask
 from apscheduler.schedulers.background import BackgroundScheduler
 from ufc_predictor import db, ml_models, util
@@ -41,7 +42,8 @@ def create_app(config_object):
     # Schedule the refitting of ML models once a day
     fit_ml_models()
     scheduler = BackgroundScheduler()
-    scheduler.add_job(fit_ml_models, 'interval', hours=24, id="fit_models")
+    scheduler.add_job(fit_ml_models, 'interval', hours=24,
+                      id="fit_models", timezone=utc)
     scheduler.start()
 
     return app
