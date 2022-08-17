@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f85d7f74f2acbe15943e244a1ecdcc84f3311b9a85520faf0fda1b372d3c9e3e"
+            "sha256": "00d82d22ba3c6c5b8f4aef2475f7b7dffd692ebbd1ea48c23b97d468b5919bb1"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -18,11 +18,11 @@
     "default": {
         "apscheduler": {
             "hashes": [
-                "sha256:65e6574b6395498d371d045f2a8a7e4f7d50c6ad21ef7313d15b1c7cf20df1e3",
-                "sha256:ddc25a0ddd899de44d7f451f4375fb971887e65af51e41e5dcf681f59b8b2c9a"
+                "sha256:3bb5229eed6fbbdafc13ce962712ae66e175aa214c69bed35a06bffcf0c5e244",
+                "sha256:e8b1ecdb4c7cb2818913f766d5898183c7cb8936680710a4d3a966e02262e526"
             ],
             "index": "pypi",
-            "version": "==3.9.1"
+            "version": "==3.6.3"
         },
         "backports.zoneinfo": {
             "hashes": [
