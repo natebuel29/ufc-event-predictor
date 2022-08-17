@@ -1,9 +1,8 @@
 #from pytz import utc
 from flask import Flask
 #from apscheduler.schedulers.background import BackgroundScheduler
-from ufc_predictor import db, ml_models, util
+from ufc_predictor import db, util
 from logging.config import dictConfig
-import logging
 
 
 def create_app(config_object):
@@ -23,8 +22,8 @@ def create_app(config_object):
             'handlers': ['wsgi']
         }
     })
-
     app = Flask(__name__)
+
     app.logger.info(
         f"Creating ufc-event-predictor app for {config_object.ENVIRONMENT} env")
     app.config.from_object(config_object)
@@ -39,8 +38,10 @@ def create_app(config_object):
     from .invalid_event import views as invalid_event
     app.register_blueprint(invalid_event.invalid_event_views)
 
-    fit_ml_models()
+    from .api import api
+    app.register_blueprint(api.api_views)
 
+    util.fit_ml_models()
     # Schedule the refitting of ML models once a day
     # scheduler = BackgroundScheduler()
     # scheduler.configure(timezone=utc)
@@ -49,12 +50,3 @@ def create_app(config_object):
     # scheduler.start()
 
     return app
-
-
-def fit_ml_models():
-    logging.info("Refitting the ML models")
-    fights_df = db.get_past_matchups()
-    X, y = util.genererate_inputs_n_labels(fights_df)
-    ml_models.log_reg_clf.fit(X, y)
-    X = util.add_bias(X)
-    ml_models.svm_clf.fit(X, y)

@@ -1,7 +1,9 @@
+from . import db, ml_models
 import random
 import pandas as pd
 import numpy as np
 import pendulum
+import logging
 fdf_labels = ['rf', 'bf', 'winner', 'rwins', 'bwins', 'rloses', 'bloses', 'rslpm', 'bslpm', 'rstrac', 'bstrac', 'rsapm', 'bsapm', 'rstrd', 'bstrd', 'rtdav',
               'btdav', 'rtdac', 'btdac', 'rtdd', 'btdd', 'rsubav', 'bsubav']
 future_df_labels = ['date', 'event_name', 'rf', 'bf', 'rwins', 'bwins', 'rloses', 'bloses', 'rslpm', 'bslpm', 'rstrac', 'bstrac', 'rsapm', 'bsapm', 'rstrd', 'bstrd', 'rtdav',
@@ -77,6 +79,15 @@ def construct_future_fight_dataframe(df, fighter_stats):
         X = pd.concat(
             [pd.DataFrame([temp_ar], columns=future_df_labels), X], ignore_index=True)
     return X
+
+
+def fit_ml_models():
+    logging.info("Refitting the ML models")
+    fights_df = db.get_past_matchups()
+    X, y = genererate_inputs_n_labels(fights_df)
+    ml_models.log_reg_clf.fit(X, y)
+    X = add_bias(X)
+    ml_models.svm_clf.fit(X, y)
 
 
 def standardize(X):
