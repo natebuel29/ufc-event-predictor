@@ -39,8 +39,9 @@ def create_app(config_object):
     from .invalid_event import views as invalid_event
     app.register_blueprint(invalid_event.invalid_event_views)
 
+    fit_ml_models()
+
     # Schedule the refitting of ML models once a day
-    # fit_ml_models()
     # scheduler = BackgroundScheduler()
     # scheduler.configure(timezone=utc)
     # scheduler.add_job(fit_ml_models, 'interval', hours=24,

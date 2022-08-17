@@ -12,8 +12,6 @@ flask-mysql = "*"
 pymysql = "*"
 pendulum = "*"
 boto3 = "*"
-apscheduler = "==3.3.1"
-"backports.zoneinfo" = "*"
 
 [dev-packages]
 autopep8 = "*"
