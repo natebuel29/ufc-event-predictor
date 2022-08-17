@@ -42,8 +42,9 @@ def create_app(config_object):
     # Schedule the refitting of ML models once a day
     fit_ml_models()
     scheduler = BackgroundScheduler()
+    scheduler.configure(timezone=utc)
     scheduler.add_job(fit_ml_models, 'interval', hours=24,
-                      id="fit_models", timezone=utc)
+                      id="fit_models")
     scheduler.start()
 
     return app

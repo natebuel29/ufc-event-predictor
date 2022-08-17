@@ -13,6 +13,7 @@ pymysql = "*"
 pendulum = "*"
 boto3 = "*"
 apscheduler = "*"
+"backports.zoneinfo" = "*"
 
 [dev-packages]
 autopep8 = "*"
