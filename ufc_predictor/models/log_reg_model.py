@@ -16,7 +16,6 @@ class LogisticRegressionModel(model.ModelInterface):
         # filter to only the significant variables
         X = X[:, fit.support_]
         X = util.add_bias(X)
-        print(X)
         self.clf.fit(X, y)
 
     def predict(self, future_X):
