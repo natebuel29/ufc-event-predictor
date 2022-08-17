@@ -87,16 +87,13 @@ def standardize(X):
     return X_norm
 
 
-def genererate_inputs_n_labels(future_df, fights_df):
-    future_X = future_df.loc[:, 5:].astype(float).to_numpy()
-    future_X = standardize(future_X)
-
+def genererate_inputs_n_labels(fights_df):
     # Get data for model
     X = fights_df.loc[:, 4:].astype(float).to_numpy()
     X = standardize(X)
     y = fights_df.loc[:, 3].astype(float).to_numpy()
 
-    return X, y, future_X
+    return X, y
 
 
 def saturday_date():
@@ -111,11 +108,13 @@ def saturday_date():
 
 
 def event_data(future_df):
+    future_X = future_df.loc[:, 5:].astype(float).to_numpy()
+    future_X = standardize(future_X)
     r_fighters = future_df.loc[:, 3].values.tolist()
     b_fighters = future_df.loc[:, 4].values.tolist()
     event_name = future_df.loc[1, 2]
 
-    return r_fighters, b_fighters, event_name
+    return future_X, r_fighters, b_fighters, event_name
 
 
 def add_bias(X):

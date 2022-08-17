@@ -2,15 +2,9 @@ from cmath import e
 from flask import (
     Blueprint, current_app, flash, redirect, render_template, request, url_for, app
 )
-import numpy as np
-import pendulum
-from ufc_predictor import util
-from ufc_predictor import db
+
+from ufc_predictor import ml_models, util, db
 import traceback
-from sklearn.feature_selection import RFE
-from sklearn.linear_model import LogisticRegression
-from sklearn import svm
-from ufc_predictor.machine_learning.ml_model_service import ML_Model_Service
 machine_learning_views = Blueprint('machine_learning', __name__)
 
 
@@ -19,27 +13,13 @@ def logistic_regression():
     try:
         saturday_date = util.saturday_date()
         future_df = db.get_future_machups(saturday_date)
-        fights_df = db.get_past_matchups()
-        r_fighters, b_fighters, event_name = util.event_data(future_df)
-        X, y, future_X = util.genererate_inputs_n_labels(future_df, fights_df)
-        clf = LogisticRegression(random_state=2)
-
-        # Use Recursive Feature Elimation for feature selection
-        rfe = RFE(clf)
-        fit = rfe.fit(X, y)
-
-        # filter to only the significant variables
-        X = X[:, fit.support_]
-        future_X = future_X[:, fit.support_]
-
-        # add bias
-        X = util.add_bias(X)
+        future_X, r_fighters, b_fighters, event_name = util.event_data(
+            future_df)
+        future_X = future_X[:, ml_models.log_clf.fit_support]
         future_X = util.add_bias(future_X)
-
         app.logging.info(
             f"Fetching predictions for UFC event on {saturday_date}")
-        service = ML_Model_Service(clf=clf)
-        results = service.predict(X, y, future_X)
+        results = ml_models.log_clf.predict(future_X)
 
     except TypeError:
         app.logging.error(
@@ -60,21 +40,13 @@ def support_vector_machine():
     try:
         saturday_date = util.saturday_date()
         future_df = db.get_future_machups(saturday_date)
-        fights_df = db.get_past_matchups()
-        r_fighters, b_fighters, event_name = util.event_data(future_df)
-        X, y, future_X = util.genererate_inputs_n_labels(future_df, fights_df)
-
-        # parameters of kernel=rbf, c=5, and gamma=0.01 were the parameters selected by GridSearchCV
-        clf = svm.SVC(kernel="rbf", C=5, gamma=0.01)
-
-        # add bias
-        X = util.add_bias(X)
+        future_X, r_fighters, b_fighters, event_name = util.event_data(
+            future_df)
         future_X = util.add_bias(future_X)
+        results = ml_models.svm_clif.predict(future_X)
 
         app.logging.info(
             f"Fetching predictions for UFC event on {saturday_date}")
-        service = ML_Model_Service(clf=clf)
-        results = service.predict(X, y, future_X)
 
     except TypeError:
         app.logging.error(
