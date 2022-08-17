@@ -15,11 +15,11 @@ def logistic_regression():
         future_df = db.get_future_machups(saturday_date)
         future_X, r_fighters, b_fighters, event_name = util.event_data(
             future_df)
-        future_X = future_X[:, ml_models.log_clf.fit_support]
+        future_X = future_X[:, ml_models.log_reg_clf.fit_support]
         future_X = util.add_bias(future_X)
         app.logging.info(
             f"Fetching predictions for UFC event on {saturday_date}")
-        results = ml_models.log_clf.predict(future_X)
+        results = ml_models.log_reg_clf.predict(future_X)
 
     except TypeError:
         app.logging.error(
@@ -43,7 +43,7 @@ def support_vector_machine():
         future_X, r_fighters, b_fighters, event_name = util.event_data(
             future_df)
         future_X = util.add_bias(future_X)
-        results = ml_models.svm_clif.predict(future_X)
+        results = ml_models.svm_clf.predict(future_X)
 
         app.logging.info(
             f"Fetching predictions for UFC event on {saturday_date}")
