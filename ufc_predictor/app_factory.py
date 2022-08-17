@@ -1,6 +1,6 @@
-from pytz import utc
+#from pytz import utc
 from flask import Flask
-from apscheduler.schedulers.background import BackgroundScheduler
+#from apscheduler.schedulers.background import BackgroundScheduler
 from ufc_predictor import db, ml_models, util
 from logging.config import dictConfig
 import logging
@@ -40,12 +40,12 @@ def create_app(config_object):
     app.register_blueprint(invalid_event.invalid_event_views)
 
     # Schedule the refitting of ML models once a day
-    fit_ml_models()
-    scheduler = BackgroundScheduler()
-    scheduler.configure(timezone=utc)
-    scheduler.add_job(fit_ml_models, 'interval', hours=24,
-                      id="fit_models")
-    scheduler.start()
+    # fit_ml_models()
+    # scheduler = BackgroundScheduler()
+    # scheduler.configure(timezone=utc)
+    # scheduler.add_job(fit_ml_models, 'interval', hours=24,
+    #                   id="fit_models")
+    # scheduler.start()
 
     return app
 
