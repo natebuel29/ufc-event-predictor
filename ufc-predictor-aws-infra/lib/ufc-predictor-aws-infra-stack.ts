@@ -3,6 +3,7 @@ import { Construct } from 'constructs';
 import * as s3Assets from 'aws-cdk-lib/aws-s3-assets'
 import * as elasticbeanstalk from 'aws-cdk-lib/aws-elasticbeanstalk';
 import * as iam from 'aws-cdk-lib/aws-iam'
+import * as secretsmanager from 'aws-cdk-lib/aws-secretsmanager';
 import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
 
 
@@ -43,6 +44,8 @@ export class UfcPredictorInfraStack extends Stack {
       actions: ["secretsmanager:GetSecretValue"],
 
     }))
+
+    const secret = new secretsmanager.Secret(this, 'UfcEventPredictorApiSecret');
 
     const myProfileName = `${appName}-InstanceProfile`
 
