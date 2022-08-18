@@ -1,9 +1,10 @@
 #from pytz import utc
 from flask import Flask
 #from apscheduler.schedulers.background import BackgroundScheduler
-from ufc_predictor import db, ml_models, util
+from ufc_predictor import db, util, auth
 from logging.config import dictConfig
-import logging
+import boto3
+import json
 
 
 def create_app(config_object):
@@ -28,10 +29,24 @@ def create_app(config_object):
     app.logger.info(
         f"Creating ufc-event-predictor app for {config_object.ENVIRONMENT} env")
     app.config.from_object(config_object)
+
+    # setup basic auth for api
+    client = boto3.client('secretsmanager', region_name='us-east-1')
+    secretMap = client.get_secret_value(
+        SecretId="UfcEventPredictorApiSecret0-Z6TyTAY1hN5n", VersionStage="AWSCURRENT")
+    api_key = secretMap.get("SecretString")
+
+    app.config['BASIC_AUTH_USERNAME'] = "api_user"
+    app.config['BASIC_AUTH_PASSWORD'] = api_key
+    auth.basic_auth.init_app(app)
+
+    # init DB stuff
     db.mysql.init_app(app)
     # TODO: delete these two functions after the db migration
     db.create_past_matchups_table(db.mysql.connect())
     db.create_future_matchups_table(db.mysql.connect())
+
+    util.fit_ml_models()
 
     from .machine_learning import views as machine_learning
     app.register_blueprint(machine_learning.machine_learning_views)
@@ -39,22 +54,7 @@ def create_app(config_object):
     from .invalid_event import views as invalid_event
     app.register_blueprint(invalid_event.invalid_event_views)
 
-    fit_ml_models()
-
-    # Schedule the refitting of ML models once a day
-    # scheduler = BackgroundScheduler()
-    # scheduler.configure(timezone=utc)
-    # scheduler.add_job(fit_ml_models, 'interval', hours=24,
-    #                   id="fit_models")
-    # scheduler.start()
+    from .api import api
+    app.register_blueprint(api.api_views)
 
     return app
-
-
-def fit_ml_models():
-    logging.info("Refitting the ML models")
-    fights_df = db.get_past_matchups()
-    X, y = util.genererate_inputs_n_labels(fights_df)
-    ml_models.log_reg_clf.fit(X, y)
-    X = util.add_bias(X)
-    ml_models.svm_clf.fit(X, y)

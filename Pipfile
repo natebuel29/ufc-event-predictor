@@ -12,6 +12,7 @@ flask-mysql = "*"
 pymysql = "*"
 pendulum = "*"
 boto3 = "*"
+flask-basicauth = "*"
 
 [dev-packages]
 autopep8 = "*"
