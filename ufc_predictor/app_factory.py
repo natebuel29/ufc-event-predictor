@@ -1,7 +1,7 @@
 #from pytz import utc
 from flask import Flask
 #from apscheduler.schedulers.background import BackgroundScheduler
-from ufc_predictor import db, util
+from ufc_predictor import db, util, auth
 from logging.config import dictConfig
 
 
@@ -23,7 +23,9 @@ def create_app(config_object):
         }
     })
     app = Flask(__name__)
-
+    app.config['BASIC_AUTH_USERNAME'] = 'nate'
+    app.config['BASIC_AUTH_PASSWORD'] = 'test'
+    auth.basic_auth.init_app(app)
     app.logger.info(
         f"Creating ufc-event-predictor app for {config_object.ENVIRONMENT} env")
     app.config.from_object(config_object)
