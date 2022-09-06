@@ -90,18 +90,10 @@ def fit_ml_models():
     ml_models.svm_clf.fit(X, y)
 
 
-def standardize(X):
-    X_norm = X.copy()
-    mu = np.mean(X_norm, axis=0)
-    sigma = np.std(X_norm, axis=0)
-    X_norm = (X_norm - mu)/sigma
-    return X_norm
-
-
 def genererate_inputs_n_labels(fights_df):
     # Get data for model
     X = fights_df.loc[:, 4:].astype(float).to_numpy()
-    X = standardize(X)
+    X = ml_models.standard_scalar.fit_transform(X)
     y = fights_df.loc[:, 3].astype(float).to_numpy()
 
     return X, y
@@ -120,7 +112,7 @@ def saturday_date():
 
 def event_data(future_df):
     future_X = future_df.loc[:, 5:].astype(float).to_numpy()
-    future_X = standardize(future_X)
+    future_X = ml_models.standard_scalar.transform(future_X)
     r_fighters = future_df.loc[:, 3].values.tolist()
     b_fighters = future_df.loc[:, 4].values.tolist()
     event_name = future_df.loc[1, 2]
