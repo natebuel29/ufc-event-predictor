@@ -53,7 +53,7 @@ For our data, the following parameters were selected using [sklearn.GridSearchCV
 
 ## Neural Networks
 
-[Neural Networks](https://en.wikipedia.org/wiki/Neural_network) is a ML algorithm that processes data in way that is heavily inspired by the human brain. Neural networks involve interconnected nodes (neurons) structured in a layer. These connected nodes represent the neurons and synapses of a biological brain. Neural networks are the heart of deep learning algorithms.
+A [Neural Network](https://en.wikipedia.org/wiki/Neural_network) is a ML algorithm that processes data in way that is heavily inspired by the human brain. Neural networks involve interconnected nodes (neurons) structured in a layer. These connected nodes represent the neurons and synapses of a biological brain. Neural networks are the heart of deep learning algorithms.
 
 ![Neural Network Image](https://www.tibco.com/sites/tibco/files/media_entity/2021-05/neutral-network-diagram.svg)
 
