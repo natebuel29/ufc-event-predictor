@@ -51,6 +51,16 @@ For our data, the following parameters were selected using [sklearn.GridSearchCV
 - `C = 5`
 - `gamma = .001`
 
-## PLANNED ALGORITHMS
+## Neural Networks
 
-`Neural Network`
+[Neural Networks](https://en.wikipedia.org/wiki/Neural_network) is a ML algorithm that processes data in way that is heavily inspired by the human brain. Neural networks involve interconnected nodes (neurons) structured in a layer. These connected nodes represent the neurons and synapses of a biological brain. Neural networks are the heart of deep learning algorithms.
+
+![Neural Network Image](https://www.tibco.com/sites/tibco/files/media_entity/2021-05/neutral-network-diagram.svg)
+
+Neural networks have a lot of hyperparameters. Below are the hyperparameters that recieved the best results during testing:
+
+- `neural network structure = input -> 256 -> 256 -> 256 -> 1 (prediction)`
+- `activation functions for hidden layers = relu`
+- `activation functions for output layers = sigmoid`
+- `optimizer = adam with a learning rate of 1e-3 and decay of 1e-9`
+- `regularizer = l2`

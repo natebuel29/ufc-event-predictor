@@ -6,23 +6,28 @@
     <nav class="base__nav">
       <h1 class="base__header__title">UFC Event Predictor</h1>
       <h1 id="about" class="base__header__nonactive">About</h1>
-      <h1 id="log_reg" class="base__header__nonactive"><a href="{{url_for('machine_learning.logistic_regression')}}">Log Reg<a/></h1>
-      <h1 id="svm" class="base__header__nonactive"><a href="{{url_for('machine_learning.support_vector_machine')}}">SVM</a></h1>
+      <h1 id="log_reg" class="base__header__nonactive"><a href="{{url_for('machine_learning.logistic_regression')}}">Log
+          Reg<a /></h1>
+      <h1 id="svm" class="base__header__nonactive"><a
+          href="{{url_for('machine_learning.support_vector_machine')}}">SVM</a></h1>
+      <h1 id="neural_networks" class="base__header__nonactive"><a
+          href="{{url_for('machine_learning.neural_networks')}}">Neural Networks</a></h1>
     </nav>
   </header>
 </div>
 <main>
   <section class="content">
     {% for message in get_flashed_messages() %}
-      <div class="flash">{{ message }}</div>
+    <div class="flash">{{ message }}</div>
     {% endfor %}
     {% block content %}{% endblock %}
     <div class="disclaimer__container">
       <div class="disclaimer__wrapper">
-        <p> <b>DISCLAIMER:</b> Please use this app responsibly! The developer is not responsible for any financial losses based on predictions from this app. This model currently has about a 70% accuracy rate, so probably not the best idea to toss the house down on it :p</p>
+        <p> <b>DISCLAIMER:</b> Please use this app responsibly! The developer is not responsible for any financial
+          losses based on predictions from this app. This model currently has about a 70% accuracy rate, so probably not
+          the best idea to toss the house down on it :p</p>
       </div>
     </div>
   </section>
 </main>
 <footer></footer>
-

@@ -13,6 +13,7 @@ pymysql = "*"
 pendulum = "*"
 boto3 = "*"
 flask-basicauth = "*"
+tensorflow = "*"
 
 [dev-packages]
 autopep8 = "*"
