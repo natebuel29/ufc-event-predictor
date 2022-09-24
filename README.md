@@ -59,7 +59,7 @@ A [Neural Network](https://en.wikipedia.org/wiki/Neural_network) is a ML algorit
 
 Neural networks have a lot of hyperparameters. Below are the hyperparameters that recieved the best results during testing:
 
-- `neural network structure = input -> 512 -> 512 -> 512 -> 1 (prediction)`
+- `neural network structure = input -> 128 -> 128 -> 1 (prediction)`
 - `activation functions for hidden layers = relu`
 - `activation functions for output layers = sigmoid`
 - `optimizer = adam with a learning rate of 1e-3 and decay of 1e-9`
