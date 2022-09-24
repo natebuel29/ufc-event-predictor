@@ -4,9 +4,7 @@ import pandas as pd
 import numpy as np
 import pendulum
 import logging
-from keras.layers import Dense, Activation
-import tensorflow as tf
-
+from ufc_predictor.models.neural_net_model import *
 
 fdf_labels = ['rf', 'bf', 'winner', 'rwins', 'bwins', 'rloses', 'bloses', 'rslpm', 'bslpm', 'rstrac', 'bstrac', 'rsapm', 'bsapm', 'rstrd', 'bstrd', 'rtdav',
               'btdav', 'rtdac', 'btdac', 'rtdd', 'btdd', 'rsubav', 'bsubav']
@@ -92,22 +90,23 @@ def fit_ml_models():
     ml_models.log_reg_clf.fit(X, y)
     X = add_bias(X)
     ml_models.svm_clf.fit(X, y)
-    initializer = tf.keras.initializers.RandomNormal(seed=1)
-    ml_models.nn_clf.add(Dense(256, input_shape=(
-        X.shape[1],), kernel_regularizer='l2', kernel_initializer=initializer))
-    ml_models.nn_clf.add(Activation('relu'))
-    ml_models.nn_clf.add(
-        Dense(256, kernel_regularizer='l2', kernel_initializer=initializer))
-    ml_models.nn_clf.add(Activation('relu'))
-    ml_models.nn_clf.add(
-        Dense(256, kernel_regularizer='l2', kernel_initializer=initializer))
-    ml_models.nn_clf.add(Activation('relu'))
-    ml_models.nn_clf.add(Dense(1, kernel_initializer=initializer))
-    ml_models.nn_clf.add(Activation('sigmoid'))
-    ml_models.nn_clf.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=1e-3, decay=1e-9),
-                             loss=tf.keras.losses.BinaryCrossentropy(),
-                             metrics=tf.keras.metrics.BinaryAccuracy())
-    ml_models.nn_clf.fit(X, y, epochs=60)
+    y = y.reshape(y.shape[0], 1)
+    ml_models.nn_clf.add(Layer_Dense(X.shape[1], 512, weight_regularizer_l2=1e-4,
+                                     bias_regularizer_l2=1e-4))
+    ml_models.nn_clf.add(Activation_ReLU())
+    ml_models.nn_clf.add(Layer_Dense(512, 512, weight_regularizer_l2=1e-4,
+                                     bias_regularizer_l2=1e-4))
+    ml_models.nn_clf.add(Activation_ReLU())
+    ml_models.nn_clf.add(Layer_Dense(512, 512, weight_regularizer_l2=1e-4,
+                                     bias_regularizer_l2=1e-4))
+    ml_models.nn_clf.add(Activation_ReLU())
+    ml_models.nn_clf.add(Layer_Dense(512, 1))
+    ml_models.nn_clf.add(Activation_Sigmoid())
+
+    ml_models.nn_clf.set(loss=Loss_BinaryCrossentropy(),
+                         optimizer=Optimizer_Adam(decay=1e-9), accuracy=Accuracy_Categorical(binary=True))
+    ml_models.nn_clf.finalize()
+    ml_models.nn_clf.train(X, y, epochs=60, print_every=50)
 
 
 def genererate_inputs_n_labels(fights_df):
