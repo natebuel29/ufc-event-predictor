@@ -91,16 +91,13 @@ def fit_ml_models():
     X = add_bias(X)
     ml_models.svm_clf.fit(X, y)
     y = y.reshape(y.shape[0], 1)
-    ml_models.nn_clf.add(Layer_Dense(X.shape[1], 512, weight_regularizer_l2=1e-4,
+    ml_models.nn_clf.add(Layer_Dense(X.shape[1], 64, weight_regularizer_l2=1e-4,
                                      bias_regularizer_l2=1e-4))
     ml_models.nn_clf.add(Activation_ReLU())
-    ml_models.nn_clf.add(Layer_Dense(512, 512, weight_regularizer_l2=1e-4,
+    ml_models.nn_clf.add(Layer_Dense(64, 64, weight_regularizer_l2=1e-4,
                                      bias_regularizer_l2=1e-4))
     ml_models.nn_clf.add(Activation_ReLU())
-    ml_models.nn_clf.add(Layer_Dense(512, 512, weight_regularizer_l2=1e-4,
-                                     bias_regularizer_l2=1e-4))
-    ml_models.nn_clf.add(Activation_ReLU())
-    ml_models.nn_clf.add(Layer_Dense(512, 1))
+    ml_models.nn_clf.add(Layer_Dense(64, 1))
     ml_models.nn_clf.add(Activation_Sigmoid())
 
     ml_models.nn_clf.set(loss=Loss_BinaryCrossentropy(),
