@@ -6,6 +6,22 @@ a {
     color: white;
 }
 
+a.git__link:link {
+    text-decoration: underline;
+}
+
+a.git__link:visited {
+    color: #060235
+}
+
+a.git__link:hover {
+    color: purple
+}
+
+a.git__link:active {
+    color: #C0F0FC
+}
+
 html {
     font-family: sans-serif;
     background: #eee;
@@ -48,7 +64,6 @@ table {
     width: 75vw
 }
 
-
 .base__header {
     display: flex;
     flex-flow: column;
@@ -66,7 +81,6 @@ table {
     flex-grow: 1;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
-
 }
 
 .base__nav {
@@ -109,6 +123,11 @@ table {
 }
 
 .event__h1__container {
+    display: flex;
+    justify-content: center;
+}
+
+.github__container {
     display: flex;
     justify-content: center;
 }
