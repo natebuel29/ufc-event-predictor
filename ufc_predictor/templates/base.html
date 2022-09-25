@@ -5,12 +5,12 @@
   <header class="base__header">
     <nav class="base__nav">
       <h1 class="base__header__title">UFC Event Predictor</h1>
-      <h1 id="about" class="base__header__nonactive">About</h1>
-      <h1 id="log_reg" class="base__header__nonactive"><a href="{{url_for('machine_learning.logistic_regression')}}">Log
+      <h1 id="log_reg" class="base__header__nonactive"><a class="nav__a"
+          href="{{url_for('machine_learning.logistic_regression')}}">Log
           Reg<a /></h1>
-      <h1 id="svm" class="base__header__nonactive"><a
+      <h1 id="svm" class="base__header__nonactive"><a class="nav__a"
           href="{{url_for('machine_learning.support_vector_machine')}}">SVM</a></h1>
-      <h1 id="neural_networks" class="base__header__nonactive"><a
+      <h1 id="neural_networks" class="base__header__nonactive"><a class="nav__a"
           href="{{url_for('machine_learning.neural_networks')}}">Neural Networks</a></h1>
     </nav>
   </header>
@@ -26,6 +26,14 @@
         <p> <b>DISCLAIMER:</b> Please use this app responsibly! The developer is not responsible for any financial
           losses based on predictions from this app. This model currently has about a 70% accuracy rate, so probably not
           the best idea to toss the house down on it :p</p>
+      </div>
+    </div>
+    <div class="github__container">
+      <div>
+        <h3>For technical details, please visit the <a class="git__link"
+            href="https://github.com/natebuel29/ufc-event-predictor">GitHub
+            repository</a></h3>
+
       </div>
     </div>
   </section>
