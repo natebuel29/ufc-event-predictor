@@ -120,12 +120,11 @@ def get_future_machups(date):
     logging.info(f"Grabbing future UFC fights from database for {date}")
     conn = mysql.connect()
     cursor = conn.cursor()
-    cursor.execute(f"SELECT * FROM test_future_matchups WHERE date_='{date}'")
+    cursor.execute(f"SELECT * FROM future_matchups WHERE date_='{date}'")
     future_df = pd.DataFrame(cursor.fetchall())
     if len(future_df) > 0:
         future_df.sort_values(by=[1], inplace=True)
     future_df = future_df.loc[:, 3:]
-
     cursor.close()
     return future_df
 
