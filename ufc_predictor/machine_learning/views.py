@@ -61,7 +61,7 @@ def support_vector_machine():
     return render_template('machine_learning/machine_learning_template.html', results_rf_bf=results_rf_bf, event_name=event_name, event_date=saturday_date, algorithm="Support Vector Machines", class_name="svm")
 
 
-@machine_learning_views.route('/neural-networks')
+@machine_learning_views.route('/neuralnetworks')
 def neural_networks():
     try:
         saturday_date = util.saturday_date()
